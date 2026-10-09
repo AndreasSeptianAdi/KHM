@@ -8,7 +8,6 @@
               <h5 class="card-title fw-semibold">Kategori Lari</h5>
             </div>
           </div>
-          <style>h6{color:#fff!important}</style>
 
           <div class="table-responsive">
             <table id="data_table" class="table table-dark align-middle text-center mb-0">
