@@ -1,12 +1,12 @@
 <style>
-	:root{--accent:#ff6b35;--muted:#f3f4f6;--bg:#0b1020;--glass:rgba(255,255,255,0.06)}
+	:root{--accent:#41902f;--muted:#f3f4f6;--bg:#f2fbf0;--glass:rgba(255,255,255,0.06)}
 	.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-  .btn-primary{background:linear-gradient(90deg,var(--accent),#ff8a5b);color:#fff}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),#7ec964);color:#fff}
+  .btn-ghost{background:#fff;border:1px solid #c9ecbc;color:#244f21}
   .countdown{display:inline-flex;gap:8px;margin-top:14px}
   .countdown .part{background:var(--glass);padding:10px 12px;border-radius:10px;min-width:64px;text-align:center}
   .part .num{font-weight:800;font-size:18px}
-												    .part .label{font-size:11px;color:#cbd5e1;margin-top:4px}
+												    .part .label{font-size:11px;color:#4a6b46;margin-top:4px}
 </style>
 <script>
 	function pad(n){return n.toString().padStart(2,'0')}
@@ -58,31 +58,31 @@
 			          					<style>
 												    *{box-sizing:border-box}
 												    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-												    body{ color:#fff;align-items:center;justify-content:center;}
-												    .card{width:100%;max-width:980px;background:linear-gradient(180deg,#071021 0%, #0f1724 60%);border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px)}
+												    body{ color:#1c3d1e;align-items:center;justify-content:center;}
+												    .card{width:100%;max-width:980px;background:linear-gradient(180deg,#ffffff 0%, #e4f7dd 60%);border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(65,144,47,.14);backdrop-filter: blur(6px)}
 												    .row{display:inline-flex;gap:24px;align-items:center}
 												    .left{flex:1}
 												    .right{width:320px}
 												    h1{margin:0;font-size:28px;letter-spacing:0.6px}
-												    p.lead{margin:12px 0 20px;color:#d2d6df}
+												    p.lead{margin:12px 0 20px;color:#4a6b46}
 												    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-												    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff8a5b);color:#fff}
-												    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+												    .btn-primary{background:linear-gradient(90deg,var(--accent),#7ec964);color:#fff}
+												    .btn-ghost{background:#fff;border:1px solid #c9ecbc;color:#244f21}
 												    .countdown{display:flex;gap:8px;margin-top:14px}
 												    .countdown .part{background:var(--glass);padding:10px 12px;border-radius:10px;min-width:64px;text-align:center}
 												    .part .num{font-weight:800;font-size:18px}
-												    .part .label{font-size:11px;color:#cbd5e1;margin-top:4px}
+												    .part .label{font-size:11px;color:#4a6b46;margin-top:4px}
 												    .subscribe{margin-top:18px;display:flex;gap:8px}
-												    .subscribe input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff}
+												    .subscribe input{flex:1;padding:10px;border-radius:10px;border:1px solid #c9ecbc;background:#fff;color:#1c3d1e}
 												    .subscribe button{padding:10px 12px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:600}
-												    .meta{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:#9aa4b2;font-size:13px}
+												    .meta{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:#6b8a66;font-size:13px}
 												    .socials{display:flex;gap:8px}
 												    .dot{height:10px;width:10px;border-radius:50%;display:inline-block}
 												    .sponsors{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-												    .sponsor{background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:8px;font-size:13px;color:#cbd5e1}
-												    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;margin-top:14px}
-												    .progress > i{display:block;height:100%;width:36%;background:linear-gradient(90deg,var(--accent),#ffb58e)}
-												    footer{margin-top:18px;color:#99a3b0;font-size:13px}
+												    .sponsor{background:#f2fbf0;padding:8px 12px;border-radius:8px;font-size:13px;color:#4a6b46;border:1px solid #d9efcf}
+												    .progress{height:10px;background:#d9efcf;border-radius:999px;overflow:hidden;margin-top:14px}
+												    .progress > i{display:block;height:100%;width:36%;background:linear-gradient(90deg,var(--accent),#a5dc90)}
+												    footer{margin-top:18px;color:#6b8a66;font-size:13px}
 												    /* Responsive */
 												    @media (max-width:800px){.row{flex-direction:row}.right{width:100%}}
 												  </style>
@@ -91,7 +91,7 @@
 				          						<div class="card">
 														    <div class="row">
 														      <div class="col-8 left">
-														        <h1 class="text-light">KEDIRI HALF MARATHON 2026</h1>
+														        <h1 class="text-dark">KEDIRI HALF MARATHON 2026</h1>
 														        <p class="lead">Siapkan dirimu, registrasi KHM 2026 akan segera dibuka!</p>
 
 														        <!-- COUNTDOWN: Set eventDate in the script below. If you don't know the exact date yet, leave a placeholder. -->
@@ -136,7 +136,7 @@
 			          				foreach ($all->result() as $kategori) {
 		          				?>
 		          				
-		          					<div class="card" style="background: linear-gradient(180deg,#071021 0%, #0f1724 60%); font-size: 12px;">
+		          					<div class="card" style="background: linear-gradient(180deg,#ffffff 0%, #e4f7dd 60%); font-size: 12px;">
 			          					<div class="card-body row">
 			          						<div class="col-1 p-1">
 			          							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ticket"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 5l0 2" /><path d="M15 11l0 2" /><path d="M15 17l0 2" /><path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2" /></svg>

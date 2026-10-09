@@ -1,0 +1,194 @@
+/* ============================================================
+   KHM 2027 — Fresh Light Green Theme (override)
+   Dasar: hijau muda segar. Timpa style.css tanpa merusak aslinya.
+   ============================================================ */
+:root,
+[data-bs-theme="light"] {
+  --khm-50: #f2fbf0;
+  --khm-100: #e4f7dd;
+  --khm-200: #c9ecbc;
+  --khm-300: #a5dc90;
+  --khm-400: #7ec964;
+  --khm-500: #58ae42;
+  --khm-600: #41902f;
+  --khm-700: #2f6e26;
+  --khm-800: #244f21;
+  --khm-900: #1c3d1e;
+  --khm-accent: #8fd694;
+  --khm-accent-2: #d9f2c7;
+
+  --bs-primary: #41902f;
+  --bs-primary-rgb: 65, 144, 47;
+  --bs-secondary: #7ec964;
+  --bs-secondary-rgb: 126, 201, 100;
+  --bs-success: #58ae42;
+  --bs-success-rgb: 88, 174, 66;
+  --bs-light-primary: #e4f7dd;
+  --bs-light-success: #f2fbf0;
+  --bs-primary-bg-subtle: #e4f7dd;
+  --bs-primary-border-subtle: #c9ecbc;
+  --bs-body-bg: #f2fbf0;
+  --bs-body-bg-rgb: 242, 251, 240;
+}
+
+/* Background halaman jadi hijau muda lembut */
+body {
+  background-color: #f2fbf0 !important;
+  background-image:
+    radial-gradient(900px 420px at 10% -5%, rgba(143, 214, 148, 0.35), transparent 60%),
+    radial-gradient(800px 380px at 95% 0%, rgba(217, 242, 199, 0.9), transparent 55%),
+    linear-gradient(180deg, #f7fdf5 0%, #f2fbf0 45%, #eaf8e4 100%) !important;
+}
+
+/* Sidebar — putih kehijauan, segar */
+.left-sidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f2fbf0 60%, #e4f7dd 100%) !important;
+  border-right: 1px solid #d9efcf !important;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link {
+  color: #244f21 !important;
+  border-radius: 12px;
+  margin: 2px 8px;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link:hover {
+  background: #e4f7dd !important;
+  color: #1c3d1e !important;
+}
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link,
+.sidebar-nav ul .sidebar-item > .sidebar-link.active {
+  background: linear-gradient(90deg, #41902f, #58ae42) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 18px rgba(65, 144, 47, 0.28);
+}
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link i,
+.sidebar-nav ul .sidebar-item > .sidebar-link.active i {
+  color: #fff !important;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link i {
+  color: #41902f !important;
+}
+.nav-small-cap {
+  color: #41902f !important;
+}
+.brand-logo {
+  background: transparent !important;
+}
+
+/* Header / topbar — putih dengan aksen hijau muda */
+.app-header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #d9efcf !important;
+}
+.app-header .navbar .navbar-nav .nav-item .nav-link {
+  color: #244f21 !important;
+}
+.app-header .navbar .navbar-nav .nav-item .nav-link:hover {
+  color: #41902f !important;
+}
+
+/* Card umum — lebih terang, border hijau muda */
+.card {
+  border: 1px solid #dcefce !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 28px rgba(65, 144, 47, 0.08) !important;
+}
+.card-title {
+  color: #1c3d1e !important;
+}
+
+/* Tombol primary jadi hijau segar */
+.btn-primary {
+  background: linear-gradient(90deg, #41902f, #7ec964) !important;
+  border-color: #41902f !important;
+  box-shadow: 0 8px 18px rgba(65, 144, 47, 0.28) !important;
+}
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+.btn-outline-primary {
+  color: #2f6e26 !important;
+  border-color: #7ec964 !important;
+}
+.btn-outline-primary:hover {
+  background: #41902f !important;
+  color: #fff !important;
+}
+.btn-danger {
+  border-radius: 10px;
+}
+.text-primary {
+  color: #2f6e26 !important;
+}
+.bg-light-primary {
+  background: #e4f7dd !important;
+}
+.bg-light-success {
+  background: #f2fbf0 !important;
+}
+.notification.bg-primary {
+  background: #58ae42 !important;
+}
+
+/* Dropdown notifikasi & profil — terang, bukan gelap pekat */
+.dropdown-menu.bg-dark,
+.dropdown-menu.content-dd {
+  background: #ffffff !important;
+  border: 1px solid #dcefce !important;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.dropdown-menu.bg-dark .text-light,
+.dropdown-menu.content-dd .text-light {
+  color: #1c3d1e !important;
+}
+.dropdown-menu.bg-dark.bg-dark,
+.py-3.px-7.bg-dark {
+  background: linear-gradient(90deg, #41902f, #7ec964) !important;
+}
+.dropdown-menu.bg-dark .bg-dark h5,
+.dropdown-menu.bg-dark h5.text-light {
+  color: #fff !important;
+}
+.message-body.bg-light {
+  background: #f7fdf5 !important;
+}
+
+/* Preloader */
+.preloader {
+  background: #f2fbf0 !important;
+}
+
+/* Owl carousel cards di dashboard */
+.counter-carousel .card {
+  background: linear-gradient(135deg, #ffffff 0%, #e4f7dd 100%) !important;
+  border: 1px solid #d9efcf !important;
+}
+
+/* Tabel */
+.table thead th {
+  background: #e4f7dd !important;
+  color: #1c3d1e !important;
+  border-bottom: 1px solid #c9ecbc !important;
+}
+
+/* Badge / alert sukses */
+.alert-success {
+  background: #e4f7dd !important;
+  border-color: #a5dc90 !important;
+  color: #244f21 !important;
+}
+
+/* Scrollbar halus */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef9e9;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7ec964, #41902f);
+  border-radius: 999px;
+  border: 2px solid #eef9e9;
+}

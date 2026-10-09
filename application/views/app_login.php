@@ -15,26 +15,27 @@
   <script src="<?=base_url()?>assets/plugins/jquery-loading/jquery.loading.js"></script> 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{--accent:#ff6b35;--accent2:#ffb18a;--bg:#0b1020;--glass:rgba(0,0,0,0.8)}
+    :root{--accent:#41902f;--accent2:#7ec964;--bg:#f2fbf0;--glass:rgba(255,255,255,0.92)}
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Roboto,Arial;color:#fff;height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#071021,#0f1724 70%),url('https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat}
-    .card{background:var(--glass);padding:40px 32px;border-radius:20px;backdrop-filter:blur(8px);max-width:380px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,0.4)}
-    h1{margin:0 0 20px;font-weight:800;text-align:center;font-size:26px;letter-spacing:0.5px}
-    p.subtitle{text-align:center;color:#cbd5e1;margin:0 0 30px}
-    label{display:block;font-weight:600;margin-bottom:6px}
-    input{width:100%;padding:12px 14px;margin-bottom:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;font-size:15px}
-    input::placeholder{color:#9aa4b2}
-    button{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:15px;cursor:pointer;transition:0.2s}
-    button:hover{opacity:0.9}
-    .meta{margin-top:20px;text-align:center;font-size:14px;color:#cbd5e1}
-    a{color:var(--accent2);text-decoration:none;font-weight:600}
+    body{margin:0;font-family:Inter,system-ui,Roboto,Arial;color:#1c3d1e;min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(900px 420px at 10% 0%,rgba(143,214,148,.45),transparent 60%),radial-gradient(800px 380px at 95% 10%,rgba(217,242,199,.95),transparent 55%),linear-gradient(180deg,#f7fdf5 0%,#f2fbf0 45%,#e6f6dc 100%);padding:24px}
+    .card{background:var(--glass);padding:40px 32px;border-radius:22px;backdrop-filter:blur(10px);max-width:400px;width:100%;box-shadow:0 18px 44px rgba(65,144,47,.16);border:1px solid #dcefce}
+    h1{margin:0 0 8px;font-weight:800;text-align:center;font-size:26px;letter-spacing:.5px;color:#1c3d1e}
+    p.subtitle{text-align:center;color:#41902f;margin:0 0 28px;font-weight:600}
+    label{display:block;font-weight:600;margin-bottom:6px;color:#244f21}
+    input{width:100%;padding:12px 14px;margin-bottom:16px;border-radius:12px;border:1px solid #c9ecbc;background:#f7fdf5;color:#1c3d1e;font-size:15px}
+    input::placeholder{color:#7aa377}
+    input:focus{outline:none;border-color:#58ae42;box-shadow:0 0 0 3px rgba(126,201,100,.25)}
+    button{width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:15px;cursor:pointer;transition:.2s;box-shadow:0 10px 22px rgba(65,144,47,.3)}
+    button:hover{filter:brightness(1.05)}
+    .meta{margin-top:20px;text-align:center;font-size:14px;color:#4a6b46}
+    a{color:#2f6e26;text-decoration:none;font-weight:700}
     a:hover{text-decoration:underline}
-    .logo{display:block;margin:0 auto 24px;width:170px;height:170px;border-radius:50%;overflow:hidden}
-    .logo img{width:100%;height:100%;object-fit:contain}
-    footer{text-align:center;margin-top:30px;font-size:12px;color:#a3a8b5}
+    .logo{display:flex;margin:0 auto 20px;width:150px;height:150px;border-radius:50%;overflow:hidden;background:#fff;border:4px solid #d9f2c7;box-shadow:0 10px 26px rgba(65,144,47,.2);align-items:center;justify-content:center}
+    .logo img{width:82%;height:82%;object-fit:contain}
+    footer{text-align:center;margin-top:28px;font-size:12px;color:#6b8a66}
   </style>
 </head>
-<body style="background-image: url('https://gelarfakta.com/wp-content/uploads/2025/05/kediri-half-marathon.jpeg'); background-size: cover;">
+<body>
   <div class="card">
     <div class="logo">
       <img src="<?=base_url('assets')?>/images/logos/logo_khm.png" alt="Logo Marathon">
