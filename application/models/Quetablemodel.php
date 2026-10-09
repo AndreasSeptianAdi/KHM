@@ -9,6 +9,7 @@ class Quetablemodel extends CI_Model {
 
 	public function opt($name, $default = '')
 	{
+		$this->db->reset_query();
 		$get = $this->db->get_where('master_options', ['option_name' => $name]);
 		if ($get->num_rows() == 1) {
 			return $get->row()->option_value;
@@ -64,6 +65,7 @@ class Quetablemodel extends CI_Model {
 		if (!$this->ensure_table()) {
 			return;
 		}
+		$this->db->reset_query();
 		$this->db->where('expires_at <', date('Y-m-d H:i:s'));
 		$this->db->delete('queue_tokens');
 	}
@@ -71,6 +73,7 @@ class Quetablemodel extends CI_Model {
 	public function active_count()
 	{
 		$this->prune();
+		$this->db->reset_query();
 		$this->db->where('status', 'active');
 		return $this->db->count_all_results('queue_tokens');
 	}
@@ -78,8 +81,10 @@ class Quetablemodel extends CI_Model {
 	public function my_token()
 	{
 		$this->prune();
+		$this->db->reset_query();
 		$token = $this->input->cookie('queue_token', true);
 		if ($token) {
+			$this->db->reset_query();
 			$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
 			if ($row) {
 				return $row;
@@ -87,6 +92,7 @@ class Quetablemodel extends CI_Model {
 		}
 		$token = bin2hex(random_bytes(16));
 		$now = date('Y-m-d H:i:s');
+		$this->db->reset_query();
 		$this->db->insert('queue_tokens', [
 			'token' => $token,
 			'status' => 'waiting',
@@ -97,20 +103,24 @@ class Quetablemodel extends CI_Model {
 			'expires_at' => date('Y-m-d H:i:s', time() + 86400),
 		]);
 		$this->input->set_cookie('queue_token', $token, 86400);
+		$this->db->reset_query();
 		return $this->db->get_where('queue_tokens', ['token' => $token])->row();
 	}
 
 	public function position($token)
 	{
+		$this->db->reset_query();
 		$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
 		if (!$row) {
 			return 0;
 		}
+		$this->db->reset_query();
 		$this->db->where('status', 'waiting');
 		$this->db->where('id <=', $row->id);
 		$this->db->order_by('id', 'asc');
 		$ahead = $this->db->count_all_results('queue_tokens');
 		$active = $this->active_count();
+		$this->db->reset_query();
 		$free = max(0, $this->queue_max() - $active);
 		return max(1, $ahead - $free);
 	}
@@ -118,6 +128,7 @@ class Quetablemodel extends CI_Model {
 	public function try_activate($token)
 	{
 		$this->prune();
+		$this->db->reset_query();
 		$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
 		if (!$row) {
 			return false;
@@ -129,17 +140,21 @@ class Quetablemodel extends CI_Model {
 		if ($row->status != 'waiting') {
 			return false;
 		}
+		$this->db->reset_query();
 		$this->db->where('status', 'waiting');
 		$this->db->where('id <', $row->id);
 		$this->db->order_by('id', 'asc');
 		$ahead = $this->db->count_all_results('queue_tokens');
 		$active = $this->active_count();
+		$this->db->reset_query();
 		if (($active + $ahead) < $this->queue_max()) {
+			$grace = (int) $this->opt('queue_active_grace', '90');
+			$this->db->reset_query();
 			$this->db->where('id', $row->id);
 			$this->db->update('queue_tokens', [
 				'status' => 'active',
 				'updated_at' => date('Y-m-d H:i:s'),
-				'expires_at' => date('Y-m-d H:i:s', time() + $this->active_grace()),
+				'expires_at' => date('Y-m-d H:i:s', time() + $grace),
 			]);
 			return true;
 		}
@@ -148,15 +163,18 @@ class Quetablemodel extends CI_Model {
 
 	public function touch($id)
 	{
+		$grace = $this->active_grace();
+		$this->db->reset_query();
 		$this->db->where('id', $id);
 		$this->db->update('queue_tokens', [
 			'updated_at' => date('Y-m-d H:i:s'),
-			'expires_at' => date('Y-m-d H:i:s', time() + $this->active_grace()),
+			'expires_at' => date('Y-m-d H:i:s', time() + $grace),
 		]);
 	}
 
 	public function heartbeat($token)
 	{
+		$this->db->reset_query();
 		$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
 		if ($row && $row->status == 'active') {
 			$this->touch($row->id);
@@ -167,16 +185,19 @@ class Quetablemodel extends CI_Model {
 
 	public function bind_user($token, $user_id)
 	{
+		$grace = $this->active_grace();
+		$this->db->reset_query();
 		$this->db->where('token', $token);
 		$this->db->update('queue_tokens', [
 			'user_id' => $user_id,
 			'updated_at' => date('Y-m-d H:i:s'),
-			'expires_at' => date('Y-m-d H:i:s', time() + $this->active_grace()),
+			'expires_at' => date('Y-m-d H:i:s', time() + $grace),
 		]);
 	}
 
 	public function release($token)
 	{
+		$this->db->reset_query();
 		$this->db->where('token', $token);
 		$this->db->delete('queue_tokens');
 		$this->input->set_cookie('queue_token', '', -3600);
@@ -185,6 +206,7 @@ class Quetablemodel extends CI_Model {
 	public function status($token)
 	{
 		$this->prune();
+		$this->db->reset_query();
 		$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
 		if (!$row) {
 			$row = $this->my_token();
