@@ -26,19 +26,6 @@
 <script type="text/javascript">
 	$('#loginForm').submit(function(event) {
 		event.preventDefault();
-		if (window.__queueCanLogin === false) {
-			Swal.fire({
-				title: 'Masih Dalam Antrean',
-				html: 'Slot login penuh. Akun <b>admin dikecualikan</b> dan tetap bisa masuk.<br>Lanjutkan login?',
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonText: 'Tetap Login',
-				cancelButtonText: 'Tunggu Giliran'
-			}).then(function(res){
-				if (res.value) { doLoginSubmit(); }
-			});
-			return;
-		}
 		doLoginSubmit();
 	});
 
