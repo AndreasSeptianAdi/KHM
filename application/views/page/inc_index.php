@@ -171,7 +171,7 @@
                     <td>
                       <div class="d-flex align-items-center">
                         <div>
-                          <h6 class="fw-semibold mb-1 text-info"><?=$pelari->pelari_name?></h6>
+                          <h6 class="fw-semibold mb-1 text-dark"><?=$pelari->pelari_name?></h6>
                           <p class="fs-2 mb-0 text-dark"><?=$umurnya?> Th</p>
                         </div>
                       </div>
