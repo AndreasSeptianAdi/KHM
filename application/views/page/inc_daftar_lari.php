@@ -475,7 +475,7 @@
 
 </script>
 <?php }else{ 
-  redirect('', refresh);
+  redirect('', 'refresh');
   /*
   <div class="container-fluid">
     <div class="row">

@@ -29,11 +29,20 @@
 		if (window.__queueCanLogin === false) {
 			Swal.fire({
 				title: 'Masih Dalam Antrean',
-				html: 'Slot login penuh. Tunggu giliran Anda — halaman ini akan membuka form otomatis.',
-				icon: 'warning'
+				html: 'Slot login penuh. Akun <b>admin dikecualikan</b> dan tetap bisa masuk.<br>Lanjutkan login?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Tetap Login',
+				cancelButtonText: 'Tunggu Giliran'
+			}).then(function(res){
+				if (res.value) { doLoginSubmit(); }
 			});
 			return;
 		}
+		doLoginSubmit();
+	});
+
+	function doLoginSubmit(){
 		$('body').loading();
 		$.ajax({
 		  url: '<?=base_url('userdata/do_login') ?>',
@@ -69,5 +78,5 @@
 		.always(function(){
 		  $('body').loading('stop');
 		});
-	});
+	}
 </script>
