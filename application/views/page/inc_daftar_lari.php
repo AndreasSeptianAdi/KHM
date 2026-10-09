@@ -515,7 +515,7 @@
                       <?php if($userdata->pelari_bib != ''){ ?>
                       <button type="button" 
                       data-bs-toggle="modal" 
-                      data-title="Tiket KHM 2026" 
+                      data-title="Tiket KHM 2027" 
                       data-href="<?=base_url('modal/qrcode?bib='.$userdata->pelari_bib)?>" 
                       data-bs-target="#ajax-modal" class="btn btn-info mt-2">
                       <i class="ti ti-qrcode"></i> TIKET

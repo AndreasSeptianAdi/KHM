@@ -135,7 +135,7 @@
                             <tr>
                               <td class="pad">
                                 <div style="color:#262526;font-family:'Oswald',Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:42px;line-height:120%;text-align:center;mso-line-height-alt:50.4px;">
-                                  <p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;">2026</span></p>
+                                  <p style="margin: 0; word-break: break-word;"><span style="word-break: break-word;">2027</span></p>
                                 </div>
                               </td>
                             </tr>
@@ -262,7 +262,7 @@
             <tbody>
               <tr>
                 <td>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-contents stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fff; background-image: url('<?=base_url('assets')?>/email_img/red_khm2025.jpg'); background-repeat: no-repeat; background-size:contain; color: #000000; width: 680px; margin: 0 auto;" width="680">
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-contents stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fff; background-image: url('<?=base_url('assets')?>/email_img/red_khm2027.jpg'); background-repeat: no-repeat; background-size:contain; color: #000000; width: 680px; margin: 0 auto;" width="680">
                     <tbody>
                       <tr>
                         <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">

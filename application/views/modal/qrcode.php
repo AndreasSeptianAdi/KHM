@@ -220,8 +220,8 @@ $userdata = $this->db->get_where('master_user', ['user_id' => userid()])->row();
         	<img src="<?=base_url('assets')?>/images/logos/logo_khm.png" alt="Logo Marathon" width='50px'>
         </div>
         <div>
-          <div class="brand__title">Kediri Half Marathon 2026</div>
-          <div class="brand__subtitle">17 Mei 2026 &middot; Dhoho International Airport</div>
+          <div class="brand__title">Kediri Half Marathon 2027</div>
+          <div class="brand__subtitle">17 Mei 2027 &middot; Dhoho International Airport</div>
         </div>
       </div>
 
@@ -256,7 +256,7 @@ $userdata = $this->db->get_where('master_user', ['user_id' => userid()])->row();
       <div class="footer">
         <div class="notes">Bawa identitas & bukti pendaftaran.</div>
         <div style="text-align:right; font-size:12px; color:var(--muted)">
-          <div style="font-weight:700; margin-top:6px;">KHM2026</div>
+          <div style="font-weight:700; margin-top:6px;">KHM2027</div>
         </div>
       </div>
     </section>

@@ -362,7 +362,7 @@ ul.social li a{
                   <h1><img height="auto" src="<?=base_url('assets')?>/email_img/logo_khm.png" style="display: block; height: auto; border: 0;" width="78"/></h1>
                 </td>
                 <td valign="middle" class="logo" style="text-align: center;">
-                  <h1><a href="#">KEDIRI HALF MARATHON 2026</a></h1>
+                  <h1><a href="#">KEDIRI HALF MARATHON 2027</a></h1>
                 </td>
               </tr>
             </table>
@@ -388,14 +388,14 @@ ul.social li a{
         </tr><!-- end tr -->
         <tr>
           <td class="bg_red" style="padding: 4em">
-            <p><b>Terima kasih telah melakukan registrasi di Kediri Half Marathon 2026.</b><br><br>
-1. Silahkan download dan simpan file ini sebagai bukti bahwa kamu sudah terdaftar di KHM 2026 dan juga sebagai bukti saat pengambilan paket lomba.<br>
-2. Jadwal dan lokasi pengambilan paket lomba akan diumumkan melalui Instagram resmi KHM 2026.<br>
+            <p><b>Terima kasih telah melakukan registrasi di Kediri Half Marathon 2027.</b><br><br>
+1. Silahkan download dan simpan file ini sebagai bukti bahwa kamu sudah terdaftar di KHM 2027 dan juga sebagai bukti saat pengambilan paket lomba.<br>
+2. Jadwal dan lokasi pengambilan paket lomba akan diumumkan melalui Instagram resmi KHM 2027.<br>
 3. Untuk pengambilan paket lomba yang diwakilkan, wajib menunjukkan dokumen ini, Surat kuasa ditandatangani dan KTP 2 pihak.<br>
 <br><br>
 Terima kasih<br>
-<b>Tim KHM 2026</b></p>
-            <img alt="" height="auto" src="<?=base_url('assets')?>/email_img/red_khm2025.jpg" style="display: none; height: auto; border: 0; width: 100%;" title="" width="164"/>
+<b>Tim KHM 2027</b></p>
+            <img alt="" height="auto" src="<?=base_url('assets')?>/email_img/red_khm2027.jpg" style="display: none; height: auto; border: 0; width: 100%;" title="" width="164"/>
 
           </td>
         </tr><!-- end:tr -->

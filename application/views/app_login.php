@@ -41,11 +41,11 @@
       <img src="<?=base_url('assets')?>/images/logos/logo_khm.png" alt="Logo Marathon">
     </div>
     <h1>Masuk</h1>
-    <p class="subtitle">Kediri Half Marathon 2026</p>
+    <p class="subtitle">Kediri Half Marathon 2027</p>
 
     <?=$content?>
 
-    <footer>© 2026 Kediri Half Marathon. Semua hak dilindungi.</footer>
+    <footer>© 2027 Kediri Half Marathon. Semua hak dilindungi.</footer>
   </div>
 
 </body>

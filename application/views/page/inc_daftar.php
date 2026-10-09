@@ -91,8 +91,8 @@
 				          						<div class="card">
 														    <div class="row">
 														      <div class="col-8 left">
-														        <h1 class="text-dark">KEDIRI HALF MARATHON 2026</h1>
-														        <p class="lead">Siapkan dirimu, registrasi KHM 2026 akan segera dibuka!</p>
+														        <h1 class="text-dark">KEDIRI HALF MARATHON 2027</h1>
+														        <p class="lead">Siapkan dirimu, registrasi KHM 2027 akan segera dibuka!</p>
 
 														        <!-- COUNTDOWN: Set eventDate in the script below. If you don't know the exact date yet, leave a placeholder. -->
 														        <div id="countdown" class="countdown" aria-hidden="false">
@@ -124,7 +124,7 @@
 														        <div style="background-color:#fff;padding:18px;border-radius:12px;text-align:center">
 														          <img src="https://register.kedirihalfmarathon.com/assets/images/logos/logo_khm.png" alt="Running" style="width:100%;height:160px;object-fit: contain;border-radius:8px;margin-bottom:12px"/>
 														          <h3 style="margin:0 0 8px 0" class="text-dark">Tantang dirimu di</h3>
-														          <h4  style="margin:0 0 8px 0" class="text-dark">KEDIRI HALF MARATHON 2026</h4>
+														          <h4  style="margin:0 0 8px 0" class="text-dark">KEDIRI HALF MARATHON 2027</h4>
 														        </div>
 														      </div>
 														    </div>
@@ -143,7 +143,7 @@
 			          						</div>
 						          			<div class="col-5">
 						          				<?='Kategori '.$kategori->kategori_name."<br>"?>
-						          				<?='Tiket Kediri Half Marathon 2026 Kategori '.$kategori->kategori_name.'<br>'?>
+						          				<?='Tiket Kediri Half Marathon 2027 Kategori '.$kategori->kategori_name.'<br>'?>
 				          						<?php echo '<b>';
 				          							if (date('Y-m-d H:i:s') >= $kategori->kategori_dateearly){
 				          								echo uang($kategori->kategori_price);

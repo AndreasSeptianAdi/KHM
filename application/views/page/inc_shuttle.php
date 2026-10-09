@@ -6,7 +6,7 @@
 	      <div class="card-body">
 	      	<div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
             <div class="mb-3 mb-sm-0">
-              <h5 class="card-title fw-semibold">Shuttle Kediri Half Marathon 2026</h5>
+              <h5 class="card-title fw-semibold">Shuttle Kediri Half Marathon 2027</h5>
             </div>
           </div>
 
@@ -229,7 +229,7 @@
 												}
 						        	?>
 						          <div class="route text-<?=$cl?>"><h4>Shuttle Service</h4><?=$lokasi?> → Bandara Dhoho Internatioal Airports</div>
-						          <div class="meta fs-5">Keberangkatan: <i class="text-<?=$cl?>">17 Mei 2026 • 03:45</i> </div>
+						          <div class="meta fs-5">Keberangkatan: <i class="text-<?=$cl?>">17 Mei 2027 • 03:45</i> </div>
 						        </div>
 						      </div>
 
@@ -265,7 +265,7 @@
 						<div class="terms" style="margin-top:16px;font-size:14px;line-height:1.45;color:#000;">
 							<strong>Syarat dan Ketentuan Shuttle Bus:</strong>
 							<ol style="padding-left:16px;margin-top:6px;">
-							<li>Shuttle bus hanya diperuntukkan untuk peserta Kediri Half Marathon 2026.</li>
+							<li>Shuttle bus hanya diperuntukkan untuk peserta Kediri Half Marathon 2027.</li>
 							<li>Satu peserta hanya bisa membeli 1 tiket shuttle.</li>
 							<li>Harga yang tertera adalah harga untuk keberangkatan dan kepulangan.</li>
 							<li>Tiket shuttle bus yang telah dibeli tidak dapat dikembalikan atau dipindahtangankan.</li>
@@ -327,7 +327,7 @@
 						  <div class="terms col-12" style="margin-top:16px;font-size:14px;line-height:1.45;color:#fff; width:100%">
 								<strong>Syarat dan Ketentuan Shuttle Bus:</strong>
 								<ol style="padding-left:16px;margin-top:6px;">
-									<li>Shuttle bus hanya diperuntukkan untuk peserta Kediri Half Marathon 2026.</li>
+									<li>Shuttle bus hanya diperuntukkan untuk peserta Kediri Half Marathon 2027.</li>
 									<li>Satu peserta hanya bisa membeli 1 tiket shuttle.</li>
 									<li>Harga yang tertera adalah harga untuk keberangkatan dan kepulangan.</li>
 									<li>Tiket shuttle bus yang telah dibeli tidak dapat dikembalikan atau dipindahtangankan.</li>

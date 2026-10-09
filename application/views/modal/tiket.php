@@ -4,7 +4,7 @@
 
 	      <h4 id="headline" class="headline">Ups! Semua tiket sudah terjual habis</h4>
 
-	      <p class="sub">Terima kasih atas minat Anda pada KHM 2026!</p>
+	      <p class="sub">Terima kasih atas minat Anda pada KHM 2027!</p>
 
 	      <section class="info-box" aria-label="Apa yang dapat Anda lakukan">
 	        <h4 class="info-title">Apa yang dapat Anda lakukan:</h4>
@@ -53,7 +53,7 @@
 
 	      <h4 id="headline" class="headline">Ups! Semua tiket sudah terjual habis</h4>
 
-	      <p class="sub">Terima kasih atas minat Anda pada KHM 2026!</p>
+	      <p class="sub">Terima kasih atas minat Anda pada KHM 2027!</p>
 
 	      <section class="info-box" aria-label="Apa yang dapat Anda lakukan">
 	        <h4 class="info-title">Apa yang dapat Anda lakukan:</h4>

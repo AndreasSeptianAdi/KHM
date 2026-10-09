@@ -128,7 +128,7 @@
                                                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                       <tr style="border-collapse:collapse">
-                                                        <td align="center" style="padding:0;Margin:0;font-size:0px"><a href="https://viewstripo.email/" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#DDBF37;font-size:14px"><img src="https://register.kedirihalfmarathon.com/assets/images/logos/logo_khm.png" alt="KHM2026" title="KHM2026" width="179" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                                                        <td align="center" style="padding:0;Margin:0;font-size:0px"><a href="https://viewstripo.email/" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#DDBF37;font-size:14px"><img src="https://register.kedirihalfmarathon.com/assets/images/logos/logo_khm.png" alt="KHM2027" title="KHM2027" width="179" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
                                                       </tr>
                                                     </table></td>
                                                   </tr>
@@ -182,7 +182,7 @@
                                                                         <td valign="top" align="center" style="padding:0;Margin:0;width:530px">
                                                                           <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                                             <tr style="border-collapse:collapse">
-                                                                              <td align="left" style="padding:0;Margin:0;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:21px;color:#333333;font-size:14px">Hi,</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:21px;color:#333333;font-size:14px">Terima Kasih telah berpartisipasi dalam acara Kediri Half Marathon 2026, Di bawah ini adalah jadwal pengambilan paket lomba.</p></td>
+                                                                              <td align="left" style="padding:0;Margin:0;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:21px;color:#333333;font-size:14px">Hi,</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;line-height:21px;color:#333333;font-size:14px">Terima Kasih telah berpartisipasi dalam acara Kediri Half Marathon 2027, Di bawah ini adalah jadwal pengambilan paket lomba.</p></td>
                                                                             </tr>
                                                                             <tr style="border-collapse:collapse">
                                                                               <td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-left:30px">
@@ -193,11 +193,11 @@
                                                                                   </tr>
                                                                                   <tr>
                                                                                     <td>Hari/Jam</td>
-                                                                                    <td>: Jumat, 15 Mei 2026, Jam : 10.00-19.00</td>
+                                                                                    <td>: Jumat, 15 Mei 2027, Jam : 10.00-19.00</td>
                                                                                   </tr>
                                                                                   <tr>
                                                                                     <td></td>
-                                                                                    <td>: Sabtu, 16 Mei 2026, Jam : 10.00-20.00</td>
+                                                                                    <td>: Sabtu, 16 Mei 2027, Jam : 10.00-20.00</td>
                                                                                   </tr>
                                                                                 </table>
                                                                               </td>
