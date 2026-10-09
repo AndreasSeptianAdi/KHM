@@ -85,9 +85,9 @@ try {
         var pos = Math.max(1, d.position || 1);
         $('#queueNum').text('#' + pos);
         if (d.active >= d.max) {
-          $('#queueSub').first().text('Slot penuh (' + d.active + '/' + d.max + '). Anda urutan ke-' + pos + ' — tetap di halaman ini, giliran dibuka otomatis.');
+          $('#queueSub').first().text('Slot penuh. Anda urutan ke-' + pos + ' — tetap di halaman ini, giliran dibuka otomatis.');
         } else {
-          $('#queueSub').first().text('Slot tersedia (' + d.active + '/' + d.max + '). Menyiapkan giliran Anda…');
+          $('#queueSub').first().text('Slot tersedia. Menyiapkan giliran Anda…');
         }
         $('#queueBar').css('width', Math.max(5, 100 - pos * 8) + '%');
         $('#queueHint').text('Menunggu giliran… refresh otomatis tiap 5 detik.');
