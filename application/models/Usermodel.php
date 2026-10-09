@@ -119,9 +119,10 @@ class Usermodel extends CI_Model {
 		}
 
 		// === Queue gate: admin (user_id 1) dikecualikan, langsung lolos ===
+		// load selalu di awal agar $this->queue tersedia di semua jalur
+		$this->load->model('quetablemodel', 'queue');
 		$is_admin = ((int) $data->user_id === 1);
 		if (!$is_admin) {
-			$this->load->model('quetablemodel', 'queue');
 			if ($this->queue->queue_enabled()) {
 				$token = $this->input->cookie('queue_token', true);
 				$allowed = false;
