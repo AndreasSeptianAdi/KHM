@@ -43,8 +43,8 @@ try {
       Slot login tersedia untuk Anda.
     <?php else: ?>
       <?= ($__q_active >= $__q_max)
-        ? 'Slot penuh (' . $__q_active . '/' . $__q_max . '). Anda urutan ke-' . max(1, $__q_pos) . ' — tetap di halaman ini, giliran dibuka otomatis.'
-        : 'Slot tersedia (' . $__q_active . '/' . $__q_max . '). Menyiapkan giliran Anda…' ?>
+        ? 'Slot penuh. Anda urutan ke-' . max(1, $__q_pos) . ' — tetap di halaman ini, giliran dibuka otomatis.'
+        : 'Slot tersedia. Menyiapkan giliran Anda…' ?>
     <?php endif; ?>
   </div>
   <div class="queue-bar"><i id="queueBar" style="width:<?= $__q_can ? 100 : max(5, 100 - $__q_pos * 8) ?>%"></i></div>
