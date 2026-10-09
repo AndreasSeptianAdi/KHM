@@ -300,7 +300,7 @@
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
                           
-                          <a href="#" class="actLogout btn btn-outline-primary" style="color:#fff">Log Out</a>
+                          <a href="#" class="actLogout btn btn-outline-primary" style="color:#fff !important">Log Out</a>
                         </div>
                       </div>
                     </div>

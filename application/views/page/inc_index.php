@@ -72,7 +72,7 @@
         <div class="card w-100">
           <div class="card-body">
             <h5 class="card-title fw-semibold">Weekly Stats</h5>
-            <p class="card-subtitle mb-0">Average sales</p>
+            <p class="card-subtitle text-dark mb-0">Average sales</p>
             <div id="stats" class="my-4"></div>
             <div class="position-relative">
               <div class="d-flex align-items-center justify-content-between mb-7">
@@ -82,7 +82,7 @@
                   </div>
                   <div>
                     <h6 class="mb-1 fs-4 fw-semibold">Group Join</h6>
-                    <p class="fs-3 mb-0">Jumlah Group Tergabung </p>
+                    <p class="fs-3 text-dark mb-0">Jumlah Group Tergabung </p>
                   </div>
                 </div>
                 <div class="bg-light-primary badge">
@@ -96,7 +96,7 @@
                   </div>
                   <div>
                     <h6 class="mb-1 fs-4 fw-semibold">User Join</h6>
-                    <p class="fs-3 mb-0">Jumlah User Tergabung</p>
+                    <p class="fs-3 text-dark mb-0">Jumlah User Tergabung</p>
                   </div>
                 </div>
                 <div class="bg-light-success badge">
@@ -110,7 +110,7 @@
                   </div>
                   <div>
                     <h6 class="mb-1 fs-4 fw-semibold">Runner Join</h6>
-                    <p class="fs-3 mb-0">Jumlah Pelari Tergabung</p>
+                    <p class="fs-3 text-dark mb-0">Jumlah Pelari Tergabung</p>
                   </div>
                 </div>
                 <div class="bg-light-info badge">
@@ -124,7 +124,7 @@
                   </div>
                   <div>
                     <h6 class="mb-1 fs-4 fw-semibold">Payment In</h6>
-                    <p class="fs-3 mb-0">Pembayaran Masuk</p>
+                    <p class="fs-3 text-dark mb-0">Pembayaran Masuk</p>
                   </div>
                 </div>
                 <div class="bg-light-danger badge">
@@ -142,7 +142,7 @@
             <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
               <div class="mb-3 mb-sm-0">
                 <h5 class="card-title fw-semibold">Lattest Join Runner</h5>
-                <p class="card-subtitle mb-0">Pelari Baru</p>
+                <p class="card-subtitle text-dark mb-0">Pelari Baru</p>
               </div>
             </div>
             <div class="table-responsive">
@@ -172,7 +172,7 @@
                       <div class="d-flex align-items-center">
                         <div>
                           <h6 class="fw-semibold mb-1 text-info"><?=$pelari->pelari_name?></h6>
-                          <p class="fs-2 mb-0 text-light"><?=$umurnya?> Th</p>
+                          <p class="fs-2 mb-0 text-dark"><?=$umurnya?> Th</p>
                         </div>
                       </div>
                     </td>
@@ -183,7 +183,7 @@
                       <p class="mb-0 fs-3"><?=$pelari->kategori_name?></p>
                     </td>
                     <td>
-                      <p class="fs-3 text-light mb-0"><?=relative_time($pelari->pelari_created)?></p>
+                      <p class="fs-3 text-dark mb-0"><?=relative_time($pelari->pelari_created)?></p>
                     </td>
                   </tr>
                   <?php } ?>
