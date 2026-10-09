@@ -42,7 +42,6 @@ body {
 .sidebar-nav ul .sidebar-item .sidebar-link {
   color: #33475b !important;
   border-radius: 10px;
-  margin: 2px 8px;
 }
 .sidebar-nav ul .sidebar-item .sidebar-link:hover {
   background: #eef7ea !important;
