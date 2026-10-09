@@ -68,6 +68,22 @@ class Quetablemodel extends CI_Model {
 		$this->db->reset_query();
 		$this->db->where('expires_at <', date('Y-m-d H:i:s'));
 		$this->db->delete('queue_tokens');
+		// Bersih-bersih: satu IP hanya boleh punya 1 token aktif/waiting.
+		// Sisa token ganda (akibat race sebelum lock) dihapus, sisakan yg terbaru.
+		$this->db->reset_query();
+		$this->db->select('ip, MAX(id) AS keep_id, COUNT(*) AS c');
+		$this->db->from('queue_tokens');
+		$this->db->where('created_at >=', date('Y-m-d H:i:s', time() - 86400));
+		$this->db->group_by('ip');
+		$this->db->having('c >', 1);
+		$dupes = $this->db->get()->result();
+		foreach ($dupes as $d) {
+			$this->db->reset_query();
+			$this->db->where('ip', $d->ip);
+			$this->db->where('id !=', $d->keep_id);
+			$this->db->where('created_at >=', date('Y-m-d H:i:s', time() - 86400));
+			$this->db->delete('queue_tokens');
+		}
 	}
 
 	public function active_count()
@@ -87,8 +103,39 @@ class Quetablemodel extends CI_Model {
 			$this->db->reset_query();
 			$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
 			if ($row) {
+				$_COOKIE['queue_token'] = $token;
 				return $row;
 			}
+		}
+		// Satu browser = satu token: pakai lock file per-IP agar request
+		// paralel (halaman + polling AJAX) tidak bikin token ganda.
+		$ip = (string) $this->input->ip_address();
+		$lock_dir = rtrim(sys_get_temp_dir(), '/\\') . '/khm_queue';
+		if (!is_dir($lock_dir)) {
+			@mkdir($lock_dir, 0777, true);
+		}
+		$lock_fp = null;
+		$lock_file = $lock_dir . '/ip_' . preg_replace('/[^a-zA-Z0-9_.-]/', '_', $ip) . '.lock';
+		$lock_fp = @fopen($lock_file, 'c');
+		if ($lock_fp) {
+			@flock($lock_fp, LOCK_EX);
+		}
+		// cek ulang setelah dapat lock (mungkin request lain sudah bikin)
+		$this->db->reset_query();
+		$this->db->where('ip', $ip);
+		$this->db->where('created_at >=', date('Y-m-d H:i:s', time() - 86400));
+		$this->db->order_by('id', 'desc');
+		$this->db->limit(1);
+		$existing = $this->db->get('queue_tokens')->row();
+		if ($existing) {
+			$token = $existing->token;
+			$this->input->set_cookie('queue_token', $token, 86400);
+			$_COOKIE['queue_token'] = $token;
+			if ($lock_fp) {
+				@flock($lock_fp, LOCK_UN);
+				@fclose($lock_fp);
+			}
+			return $existing;
 		}
 		$token = bin2hex(random_bytes(16));
 		$now = date('Y-m-d H:i:s');
@@ -97,14 +144,20 @@ class Quetablemodel extends CI_Model {
 			'token' => $token,
 			'status' => 'waiting',
 			'user_id' => null,
-			'ip' => $this->input->ip_address(),
+			'ip' => $ip,
 			'created_at' => $now,
 			'updated_at' => $now,
 			'expires_at' => date('Y-m-d H:i:s', time() + 86400),
 		]);
 		$this->input->set_cookie('queue_token', $token, 86400);
+		$_COOKIE['queue_token'] = $token;
 		$this->db->reset_query();
-		return $this->db->get_where('queue_tokens', ['token' => $token])->row();
+		$row = $this->db->get_where('queue_tokens', ['token' => $token])->row();
+		if ($lock_fp) {
+			@flock($lock_fp, LOCK_UN);
+			@fclose($lock_fp);
+		}
+		return $row;
 	}
 
 	public function position($token)
