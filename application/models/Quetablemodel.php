@@ -263,7 +263,24 @@ class Quetablemodel extends CI_Model {
 		$this->db->reset_query();
 		$this->db->where('token', $token);
 		$this->db->delete('queue_tokens');
+		// hapus cookie di semua level: CI + native + superglobal request ini
 		$this->input->set_cookie('queue_token', '', -3600);
+		$params = session_get_cookie_params();
+		@setcookie('queue_token', '', time() - 3600, '/', '', false, false);
+		if (!empty($params['path'])) {
+			@setcookie('queue_token', '', time() - 3600, $params['path'], '', false, false);
+		}
+		if (isset($_COOKIE['queue_token'])) {
+			unset($_COOKIE['queue_token']);
+		}
+	}
+
+	/* Hapus semua token milik user_id (pengaman logout tanpa cookie) */
+	public function release_by_user($user_id)
+	{
+		$this->db->reset_query();
+		$this->db->where('user_id', $user_id);
+		$this->db->delete('queue_tokens');
 	}
 
 	public function status($token)

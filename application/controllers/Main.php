@@ -110,6 +110,11 @@ class Main extends CI_Controller {
 			if ($token) {
 				$this->queue->release($token);
 			}
+			// pengaman: hapus juga by user_id (kalau cookie hilang/rusak)
+			$uid = $this->session->userdata('user_id');
+			if ($uid) {
+				$this->queue->release_by_user($uid);
+			}
 		} catch (Exception $e) {}
 		$this->session->sess_destroy();
 		redirect('',301);
