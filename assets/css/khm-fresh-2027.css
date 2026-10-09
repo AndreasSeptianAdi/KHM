@@ -1,194 +1,184 @@
 /* ============================================================
-   KHM 2027 — Fresh Light Green Theme (override)
-   Dasar: hijau muda segar. Timpa style.css tanpa merusak aslinya.
+   KHM 2027 — Fresh Light Green Theme (override) v1.1
+   - Navbar/topbar: TIDAK dioverride (pakai default style.css)
+   - Fokus: background hijau muda lembut + kontras teks aman
    ============================================================ */
 :root,
 [data-bs-theme="light"] {
-  --khm-50: #f2fbf0;
-  --khm-100: #e4f7dd;
-  --khm-200: #c9ecbc;
-  --khm-300: #a5dc90;
-  --khm-400: #7ec964;
-  --khm-500: #58ae42;
+  --khm-bg: #f4faf2;
+  --khm-card: #ffffff;
+  --khm-border: #dcefd4;
   --khm-600: #41902f;
   --khm-700: #2f6e26;
   --khm-800: #244f21;
   --khm-900: #1c3d1e;
-  --khm-accent: #8fd694;
-  --khm-accent-2: #d9f2c7;
+  --khm-muted: #4a6b46;
 
   --bs-primary: #41902f;
   --bs-primary-rgb: 65, 144, 47;
-  --bs-secondary: #7ec964;
-  --bs-secondary-rgb: 126, 201, 100;
-  --bs-success: #58ae42;
-  --bs-success-rgb: 88, 174, 66;
-  --bs-light-primary: #e4f7dd;
-  --bs-light-success: #f2fbf0;
-  --bs-primary-bg-subtle: #e4f7dd;
-  --bs-primary-border-subtle: #c9ecbc;
-  --bs-body-bg: #f2fbf0;
-  --bs-body-bg-rgb: 242, 251, 240;
+  --bs-secondary: #6db356;
+  --bs-secondary-rgb: 109, 179, 86;
+  --bs-success: #41902f;
+  --bs-success-rgb: 65, 144, 47;
+  --bs-body-bg: #f4faf2;
+  --bs-body-bg-rgb: 244, 250, 242;
+  --bs-body-color: #1c3d1e;
+  --bs-body-color-rgb: 28, 61, 30;
+  --bs-heading-color: #1c3d1e;
 }
 
-/* Background halaman jadi hijau muda lembut */
+/* Background halaman — hijau muda sangat lembut, hampir netral */
 body {
-  background-color: #f2fbf0 !important;
-  background-image:
-    radial-gradient(900px 420px at 10% -5%, rgba(143, 214, 148, 0.35), transparent 60%),
-    radial-gradient(800px 380px at 95% 0%, rgba(217, 242, 199, 0.9), transparent 55%),
-    linear-gradient(180deg, #f7fdf5 0%, #f2fbf0 45%, #eaf8e4 100%) !important;
+  background-color: #f4faf2 !important;
+  background-image: linear-gradient(180deg, #f8fdf6 0%, #f4faf2 60%, #eef7ea 100%) !important;
+  color: #1c3d1e !important;
 }
 
-/* Sidebar — putih kehijauan, segar */
+/* Sidebar — putih bersih, aksen hijau hanya di menu aktif */
 .left-sidebar {
-  background: linear-gradient(180deg, #ffffff 0%, #f2fbf0 60%, #e4f7dd 100%) !important;
-  border-right: 1px solid #d9efcf !important;
+  background: #ffffff !important;
+  border-right: 1px solid #e3f0db !important;
 }
 .sidebar-nav ul .sidebar-item .sidebar-link {
-  color: #244f21 !important;
-  border-radius: 12px;
+  color: #33475b !important;
+  border-radius: 10px;
   margin: 2px 8px;
 }
 .sidebar-nav ul .sidebar-item .sidebar-link:hover {
-  background: #e4f7dd !important;
+  background: #eef7ea !important;
   color: #1c3d1e !important;
 }
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link,
 .sidebar-nav ul .sidebar-item > .sidebar-link.active {
-  background: linear-gradient(90deg, #41902f, #58ae42) !important;
+  background: #41902f !important;
   color: #fff !important;
-  box-shadow: 0 8px 18px rgba(65, 144, 47, 0.28);
+  box-shadow: 0 6px 14px rgba(65, 144, 47, 0.25);
 }
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link i,
 .sidebar-nav ul .sidebar-item > .sidebar-link.active i {
   color: #fff !important;
 }
 .sidebar-nav ul .sidebar-item .sidebar-link i {
-  color: #41902f !important;
+  color: #5a6a85 !important;
+}
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link:hover,
+.sidebar-nav ul .sidebar-item > .sidebar-link.active:hover {
+  color: #fff !important;
 }
 .nav-small-cap {
-  color: #41902f !important;
+  color: #5a6a85 !important;
 }
 .brand-logo {
   background: transparent !important;
 }
 
-/* Header / topbar — putih dengan aksen hijau muda */
-.app-header {
-  background: rgba(255, 255, 255, 0.88) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #d9efcf !important;
-}
-.app-header .navbar .navbar-nav .nav-item .nav-link {
-  color: #244f21 !important;
-}
-.app-header .navbar .navbar-nav .nav-item .nav-link:hover {
-  color: #41902f !important;
-}
-
-/* Card umum — lebih terang, border hijau muda */
+/* Card umum — PUTIH agar teks selalu kontras, bukan hijau */
 .card {
-  border: 1px solid #dcefce !important;
-  border-radius: 18px !important;
-  box-shadow: 0 10px 28px rgba(65, 144, 47, 0.08) !important;
-}
-.card-title {
+  background: #ffffff !important;
+  border: 1px solid #e3f0db !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 18px rgba(42, 53, 71, 0.06) !important;
   color: #1c3d1e !important;
 }
+.card .card-title,
+.card h1, .card h2, .card h3, .card h4, .card h5 {
+  color: #1c3d1e !important;
+}
+.card .card-subtitle,
+.card p, .card span:not(.badge) {
+  color: inherit;
+}
 
-/* Tombol primary jadi hijau segar */
+/* Tombol primary — hijau solid (bukan gradasi terang) agar teks putih terbaca */
 .btn-primary {
-  background: linear-gradient(90deg, #41902f, #7ec964) !important;
+  background: #41902f !important;
   border-color: #41902f !important;
-  box-shadow: 0 8px 18px rgba(65, 144, 47, 0.28) !important;
+  color: #fff !important;
 }
 .btn-primary:hover {
-  filter: brightness(1.05);
+  background: #2f6e26 !important;
+  border-color: #2f6e26 !important;
 }
 .btn-outline-primary {
   color: #2f6e26 !important;
-  border-color: #7ec964 !important;
+  border-color: #41902f !important;
 }
 .btn-outline-primary:hover {
   background: #41902f !important;
   color: #fff !important;
 }
-.btn-danger {
-  border-radius: 10px;
-}
 .text-primary {
   color: #2f6e26 !important;
 }
-.bg-light-primary {
-  background: #e4f7dd !important;
+a {
+  color: #2f6e26;
 }
-.bg-light-success {
-  background: #f2fbf0 !important;
-}
-.notification.bg-primary {
-  background: #58ae42 !important;
+a:hover {
+  color: #244f21;
 }
 
-/* Dropdown notifikasi & profil — terang, bukan gelap pekat */
-.dropdown-menu.bg-dark,
-.dropdown-menu.content-dd {
+/* Dashboard carousel — putih, angka hijau tua */
+.counter-carousel .card {
   background: #ffffff !important;
-  border: 1px solid #dcefce !important;
-  border-radius: 16px;
-  overflow: hidden;
+  border: 1px solid #e3f0db !important;
 }
-.dropdown-menu.bg-dark .text-light,
-.dropdown-menu.content-dd .text-light {
+.counter-carousel .card p,
+.counter-carousel .card h5 {
   color: #1c3d1e !important;
 }
-.dropdown-menu.bg-dark.bg-dark,
-.py-3.px-7.bg-dark {
-  background: linear-gradient(90deg, #41902f, #7ec964) !important;
+
+/* Tabel — header abu netral, teks gelap (tidak hijau bertabrakan) */
+.table thead th {
+  background: #f6f9fc !important;
+  color: #2a3547 !important;
+  border-bottom: 1px solid #dfe5ef !important;
 }
-.dropdown-menu.bg-dark .bg-dark h5,
-.dropdown-menu.bg-dark h5.text-light {
-  color: #fff !important;
+.table tbody td, .table tbody th {
+  color: #2a3547 !important;
 }
-.message-body.bg-light {
-  background: #f7fdf5 !important;
+
+/* Form */
+.form-control, .form-select {
+  border-color: #dfe5ef !important;
+  color: #2a3547 !important;
+}
+.form-control:focus, .form-select:focus {
+  border-color: #41902f !important;
+  box-shadow: 0 0 0 3px rgba(65, 144, 47, 0.15) !important;
+}
+.form-label {
+  color: #2a3547 !important;
+}
+
+/* Badge / alert */
+.alert-success {
+  background: #eef7ea !important;
+  border-color: #c9ecbc !important;
+  color: #244f21 !important;
+}
+.badge.bg-light-primary {
+  background: #eef7ea !important;
+  color: #2f6e26 !important;
 }
 
 /* Preloader */
 .preloader {
-  background: #f2fbf0 !important;
+  background: #f4faf2 !important;
 }
 
-/* Owl carousel cards di dashboard */
-.counter-carousel .card {
-  background: linear-gradient(135deg, #ffffff 0%, #e4f7dd 100%) !important;
-  border: 1px solid #d9efcf !important;
-}
-
-/* Tabel */
-.table thead th {
-  background: #e4f7dd !important;
-  color: #1c3d1e !important;
-  border-bottom: 1px solid #c9ecbc !important;
-}
-
-/* Badge / alert sukses */
-.alert-success {
-  background: #e4f7dd !important;
-  border-color: #a5dc90 !important;
-  color: #244f21 !important;
-}
-
-/* Scrollbar halus */
+/* Scrollbar netral */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #eef9e9;
+  background: #eef2ec;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #7ec964, #41902f);
+  background: #b9d3ae;
   border-radius: 999px;
-  border: 2px solid #eef9e9;
+  border: 2px solid #eef2ec;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #41902f;
 }

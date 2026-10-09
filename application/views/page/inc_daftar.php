@@ -1,7 +1,7 @@
 <style>
 	:root{--accent:#41902f;--muted:#f3f4f6;--bg:#f2fbf0;--glass:rgba(255,255,255,0.06)}
 	.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-  .btn-primary{background:linear-gradient(90deg,var(--accent),#7ec964);color:#fff}
+  .btn-primary{background:#41902f;color:#fff}
   .btn-ghost{background:#fff;border:1px solid #c9ecbc;color:#244f21}
   .countdown{display:inline-flex;gap:8px;margin-top:14px}
   .countdown .part{background:var(--glass);padding:10px 12px;border-radius:10px;min-width:64px;text-align:center}
@@ -59,14 +59,14 @@
 												    *{box-sizing:border-box}
 												    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
 												    body{ color:#1c3d1e;align-items:center;justify-content:center;}
-												    .card{width:100%;max-width:980px;background:linear-gradient(180deg,#ffffff 0%, #e4f7dd 60%);border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(65,144,47,.14);backdrop-filter: blur(6px)}
+												    .card{width:100%;max-width:980px;background:#ffffff;border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(65,144,47,.14);backdrop-filter: blur(6px)}
 												    .row{display:inline-flex;gap:24px;align-items:center}
 												    .left{flex:1}
 												    .right{width:320px}
 												    h1{margin:0;font-size:28px;letter-spacing:0.6px}
 												    p.lead{margin:12px 0 20px;color:#4a6b46}
 												    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-												    .btn-primary{background:linear-gradient(90deg,var(--accent),#7ec964);color:#fff}
+												    .btn-primary{background:#41902f;color:#fff}
 												    .btn-ghost{background:#fff;border:1px solid #c9ecbc;color:#244f21}
 												    .countdown{display:flex;gap:8px;margin-top:14px}
 												    .countdown .part{background:var(--glass);padding:10px 12px;border-radius:10px;min-width:64px;text-align:center}
@@ -81,7 +81,7 @@
 												    .sponsors{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 												    .sponsor{background:#f2fbf0;padding:8px 12px;border-radius:8px;font-size:13px;color:#4a6b46;border:1px solid #d9efcf}
 												    .progress{height:10px;background:#d9efcf;border-radius:999px;overflow:hidden;margin-top:14px}
-												    .progress > i{display:block;height:100%;width:36%;background:linear-gradient(90deg,var(--accent),#a5dc90)}
+												    .progress > i{display:block;height:100%;width:36%;background:#41902f}
 												    footer{margin-top:18px;color:#6b8a66;font-size:13px}
 												    /* Responsive */
 												    @media (max-width:800px){.row{flex-direction:row}.right{width:100%}}
@@ -136,7 +136,7 @@
 			          				foreach ($all->result() as $kategori) {
 		          				?>
 		          				
-		          					<div class="card" style="background: linear-gradient(180deg,#ffffff 0%, #e4f7dd 60%); font-size: 12px;">
+		          					<div class="card" style="background: #ffffff; font-size: 12px;">
 			          					<div class="card-body row">
 			          						<div class="col-1 p-1">
 			          							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-ticket"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 5l0 2" /><path d="M15 11l0 2" /><path d="M15 17l0 2" /><path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2" /></svg>
