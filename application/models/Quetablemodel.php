@@ -114,15 +114,24 @@ class Quetablemodel extends CI_Model {
 		if (!$row) {
 			return 0;
 		}
+		if ($row->status == 'active') {
+			return 0;
+		}
 		$this->db->reset_query();
 		$this->db->where('status', 'waiting');
 		$this->db->where('id <=', $row->id);
-		$this->db->order_by('id', 'asc');
 		$ahead = $this->db->count_all_results('queue_tokens');
-		$active = $this->active_count();
+		return max(1, (int) $ahead);
+	}
+
+	/* Berapa slot kosong tersedia (tanpa efek samping) */
+	public function free_slots()
+	{
+		$this->prune();
 		$this->db->reset_query();
-		$free = max(0, $this->queue_max() - $active);
-		return max(1, $ahead - $free);
+		$this->db->where('status', 'active');
+		$active = $this->db->count_all_results('queue_tokens');
+		return max(0, $this->queue_max() - $active);
 	}
 
 	public function try_activate($token)
@@ -140,25 +149,26 @@ class Quetablemodel extends CI_Model {
 		if ($row->status != 'waiting') {
 			return false;
 		}
+		// FIFO: hanya yang paling depan yang boleh naik saat ada slot kosong
 		$this->db->reset_query();
 		$this->db->where('status', 'waiting');
 		$this->db->where('id <', $row->id);
-		$this->db->order_by('id', 'asc');
 		$ahead = $this->db->count_all_results('queue_tokens');
-		$active = $this->active_count();
-		$this->db->reset_query();
-		if (($active + $ahead) < $this->queue_max()) {
-			$grace = (int) $this->opt('queue_active_grace', '90');
-			$this->db->reset_query();
-			$this->db->where('id', $row->id);
-			$this->db->update('queue_tokens', [
-				'status' => 'active',
-				'updated_at' => date('Y-m-d H:i:s'),
-				'expires_at' => date('Y-m-d H:i:s', time() + $grace),
-			]);
-			return true;
+		if ($ahead > 0) {
+			return false; // bukan giliran: masih ada yang lebih dulu
 		}
-		return false;
+		if ($this->free_slots() < 1) {
+			return false; // slot penuh
+		}
+		$grace = (int) $this->opt('queue_active_grace', '90');
+		$this->db->reset_query();
+		$this->db->where('id', $row->id);
+		$this->db->update('queue_tokens', [
+			'status' => 'active',
+			'updated_at' => date('Y-m-d H:i:s'),
+			'expires_at' => date('Y-m-d H:i:s', time() + $grace),
+		]);
+		return true;
 	}
 
 	public function touch($id)

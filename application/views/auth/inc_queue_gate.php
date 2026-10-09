@@ -39,7 +39,13 @@ try {
   <div class="queue-label" id="queueLabel"><?= $__q_can ? 'Giliran Anda — silakan login' : 'Ruang antrean' ?></div>
   <div class="queue-num" id="queueNum"><?= $__q_can ? '✔' : ('#' . max(1, $__q_pos)) ?></div>
   <div class="queue-sub" id="queueSub">
-    <?= $__q_can ? 'Slot login tersedia untuk Anda.' : 'Slot penuh (' . $__q_active . '/' . $__q_max . '). Tetap di halaman ini, posisi Anda diperbarui otomatis.' ?>
+    <?php if ($__q_can): ?>
+      Slot login tersedia untuk Anda.
+    <?php else: ?>
+      <?= ($__q_active >= $__q_max)
+        ? 'Slot penuh (' . $__q_active . '/' . $__q_max . '). Anda urutan ke-' . max(1, $__q_pos) . ' — tetap di halaman ini, giliran dibuka otomatis.'
+        : 'Slot tersedia (' . $__q_active . '/' . $__q_max . '). Menyiapkan giliran Anda…' ?>
+    <?php endif; ?>
   </div>
   <div class="queue-bar"><i id="queueBar" style="width:<?= $__q_can ? 100 : max(5, 100 - $__q_pos * 8) ?>%"></i></div>
   <div class="queue-sub" style="margin-top:10px"><span class="queue-spin"></span><span id="queueHint">Memeriksa antrean…</span></div>
@@ -76,9 +82,14 @@ try {
       } else {
         box.addClass('waiting');
         $('#queueLabel').text('Ruang antrean');
-        $('#queueNum').text('#' + Math.max(1, d.position || 1));
-        $('#queueSub').first().text('Slot penuh (' + d.active + '/' + d.max + '). Tetap di halaman ini, posisi Anda diperbarui otomatis.');
-        $('#queueBar').css('width', Math.max(5, 100 - (d.position || 1) * 8) + '%');
+        var pos = Math.max(1, d.position || 1);
+        $('#queueNum').text('#' + pos);
+        if (d.active >= d.max) {
+          $('#queueSub').first().text('Slot penuh (' + d.active + '/' + d.max + '). Anda urutan ke-' + pos + ' — tetap di halaman ini, giliran dibuka otomatis.');
+        } else {
+          $('#queueSub').first().text('Slot tersedia (' + d.active + '/' + d.max + '). Menyiapkan giliran Anda…');
+        }
+        $('#queueBar').css('width', Math.max(5, 100 - pos * 8) + '%');
         $('#queueHint').text('Menunggu giliran… refresh otomatis tiap 5 detik.');
       }
       window.__queueCanLogin = canLogin;
