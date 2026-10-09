@@ -20,7 +20,35 @@
 	            </thead>
 	            <tbody>
 	            	<tr>
-	            		<td><h6>Setting Pembukaan dan Penutupan Akun</h6></td>
+	            		<td><h6>Antrean Login (Waiting Room)</h6><small class="text-muted d-block">Aktif = hanya pemegang slot yang bisa login. Contoh isi: <b>1</b> aktif / <b>0</b> mati</small></td>
+	            		<td><h6><?=htmlspecialchars(option('queue_enabled') === '' ? '1' : option('queue_enabled'))?></h6></td>
+	            		<td>
+	            			<button 
+	            				class="btn btn-sm btn-info" 
+	            				data-bs-toggle="modal" 
+					          data-modalsize="modal-xs"
+					          data-title="Ubah Status Antrean" 
+					          data-href="<?=base_url('adminmodal/ubah_option_text?opt_name=queue_enabled')?>" 
+					          class="btn btn-sm btn-info ml-1" 
+					          data-bs-target="#ajax-modal">
+					          	<i class="ti ti-pencil"></i> EDIT</button></td>
+	            	</tr>
+	            	<tr>
+	            		<td><h6>Maks Slot Login Bersamaan</h6><small class="text-muted d-block">Default: <b>10</b></small></td>
+	            		<td><h6><?=htmlspecialchars(option('queue_max') === '' ? '10' : option('queue_max'))?></h6></td>
+	            		<td>
+	            			<button 
+	            				class="btn btn-sm btn-info" 
+	            				data-bs-toggle="modal" 
+					          data-modalsize="modal-xs"
+					          data-title="Ubah Maks Slot" 
+					          data-href="<?=base_url('adminmodal/ubah_option_text?opt_name=queue_max')?>" 
+					          class="btn btn-sm btn-info ml-1" 
+					          data-bs-target="#ajax-modal">
+					          	<i class="ti ti-pencil"></i> EDIT</button></td>
+	            	</tr>
+	            	<tr>
+	            		<td><h6>Setting Batas Akhir Pendaftaran Akun</h6></td>
 	            		<td><h6><?=$a=date('d F Y H:i A', strtotime(option('last_regis')))?></h6></td>
 	            		<td>
 	            			<button 

@@ -1,3 +1,5 @@
+<?php $this->load->view('auth/inc_queue_gate'); ?>
+<div id="loginWrap">
 <form id="loginForm">
   <label for="email">Email</label>
   <input type="text" class="form-control" name="username" id="email" aria-describedby="emailHelp">
@@ -7,6 +9,7 @@
   <a href="<?=base_url('auth/forgot')?>">Lupa Password ?</a>
   <button style="margin-top: 20px;" type="submit">Masuk Sekarang</button>
 </form>
+</div>
 
 <?php 
   if (date('Y-m-d H:i') <= date('Y-m-d H:i', strtotime(option('last_regis')))) {
@@ -23,6 +26,14 @@
 <script type="text/javascript">
 	$('#loginForm').submit(function(event) {
 		event.preventDefault();
+		if (window.__queueCanLogin === false) {
+			Swal.fire({
+				title: 'Masih Dalam Antrean',
+				html: 'Slot login penuh. Tunggu giliran Anda — halaman ini akan membuka form otomatis.',
+				icon: 'warning'
+			});
+			return;
+		}
 		$('body').loading();
 		$.ajax({
 		  url: '<?=base_url('userdata/do_login') ?>',

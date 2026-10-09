@@ -94,7 +94,26 @@ class Usermodel extends CI_Model {
 		$return['status'] = true;
 		$return['type'] = 'error';
 		$return['message'] = '';
-	
+
+		// === Queue gate: tolak login jika slot penuh / belum giliran ===
+		$this->load->model('quetablemodel', 'queue');
+		if ($this->queue->queue_enabled()) {
+			$token = $this->input->cookie('queue_token', true);
+			$allowed = false;
+			if ($token) {
+				$st = $this->queue->status($token);
+				$allowed = !empty($st['can_login']);
+			}
+			if (!$allowed) {
+				$return['status'] = false;
+				$return['type'] = 'warning';
+				$return['heading'] = 'Ruang Antrean Penuh';
+				$return['message'] = 'Slot login sedang penuh (maks ' . $this->queue->queue_max() . ' pengguna). Tetap di halaman login, giliran Anda akan dibuka otomatis.';
+				$return['queue_wait'] = true;
+				return $return;
+			}
+		}
+
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
@@ -132,6 +151,12 @@ class Usermodel extends CI_Model {
 			$this->db->where('user_id', $data->user_id);
 			$this->db->update('master_user', $object);
 			$this->session->set_userdata($session);
+
+			// ikat slot antrean ke user ini
+			$__qt = $this->input->cookie('queue_token', true);
+			if ($__qt) {
+				$this->queue->bind_user($__qt, $data->user_id);
+			}
 
 			// cek redirect
 			if (userdata()->pelari_group != null){

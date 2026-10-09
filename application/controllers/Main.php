@@ -103,6 +103,14 @@ class Main extends CI_Controller {
 
 	public function logout(){
 	
+		// lepas slot antrean agar giliran berikutnya masuk
+		try {
+			$this->load->model('quetablemodel', 'queue');
+			$token = $this->input->cookie('queue_token', true);
+			if ($token) {
+				$this->queue->release($token);
+			}
+		} catch (Exception $e) {}
 		$this->session->sess_destroy();
 		redirect('',301);
 	}

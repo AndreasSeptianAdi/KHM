@@ -26,6 +26,19 @@
       }
     </style>
     <!-- <script src="<?=MIDTRANS_SNAP?>" data-client-key="<?=MIDTRANS_CLIENT_KEY?>"></script> -->
+    <script type="text/javascript">
+    // Queue heartbeat: pertahankan slot aktif selama user di dalam aplikasi
+    (function(){
+      function qping(){
+        try {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', '<?=base_url('queue/ping')?>', true);
+          xhr.send();
+        } catch(e){}
+      }
+      setInterval(qping, 45000);
+    })();
+    </script>
   </head>
   
 

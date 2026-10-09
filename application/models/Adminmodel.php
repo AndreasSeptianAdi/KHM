@@ -23,6 +23,23 @@ class Adminmodel extends CI_Model {
 		return $return;
 	}
 
+	public function ubah_option_text($value='')
+	{
+		$opt = post('opt_name');
+		$val = post('ovalue');
+		$get = $this->db->get_where('master_options', ['option_name' => $opt]);
+		if ($get->num_rows() == 1) {
+			$this->db->where('option_name', $opt);
+			$this->db->update('master_options', ['option_value' => $val]);
+		} else {
+			$this->db->insert('master_options', ['option_name' => $opt, 'option_value' => $val]);
+		}
+		$return['status'] = true;
+		$return['type'] = 'success';
+		$return['message'] = 'Data Tersimpan';
+		return $return;
+	}
+
 	public function ubah_kaos($value='')
 	{
 		$kaos = post('kaos');
