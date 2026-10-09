@@ -1,0 +1,1 @@
+<img src="<?=base_url('assets/images/finish KHM26.jpeg')?>" class="mt-3" width="100%">
