@@ -19,7 +19,9 @@
 	              </tr>
 	            </thead>
 	            <tbody>
-	            	<tr>
+	            	<?php
+						
+					/*<tr>
 	            		<td><h6>Antrean Login (Waiting Room)</h6><small class="text-muted d-block">Aktif = hanya pemegang slot yang bisa login. Contoh isi: <b>1</b> aktif / <b>0</b> mati</small></td>
 	            		<td><h6><?=htmlspecialchars(option('queue_enabled') === '' ? '1' : option('queue_enabled'))?></h6></td>
 	            		<td>
@@ -46,7 +48,8 @@
 					          class="btn btn-sm btn-info ml-1" 
 					          data-bs-target="#ajax-modal">
 					          	<i class="ti ti-pencil"></i> EDIT</button></td>
-	            	</tr>
+	            	</tr>*/ 
+					?>
 	            	<tr>
 	            		<td><h6>Setting Batas Akhir Pendaftaran Akun</h6></td>
 	            		<td><h6><?=$a=date('d F Y H:i A', strtotime(option('last_regis')))?></h6></td>

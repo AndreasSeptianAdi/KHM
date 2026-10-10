@@ -66,7 +66,7 @@
 	  </div>
 
 	    <?php 
-	    // <script>
+	    /* <script>
 	    // 	$('#ubahkat').click(function(event) {
 			// 		event.preventDefault();
 			// 		$('body').loading();
@@ -89,7 +89,7 @@
 			// 		  $('body').loading('stop');
 			// 		});
 			// 	});
-	    // </script>
+	     </script>*/
 	     ?>
 		<?php
 		return false;
