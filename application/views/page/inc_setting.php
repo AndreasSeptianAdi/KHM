@@ -19,10 +19,8 @@
 	              </tr>
 	            </thead>
 	            <tbody>
-	            	<?php
-						
-					/*<tr>
-	            		<td><h6>Antrean Login (Waiting Room)</h6><small class="text-muted d-block">Aktif = hanya pemegang slot yang bisa login. Contoh isi: <b>1</b> aktif / <b>0</b> mati</small></td>
+	            	<tr>
+	            		<td><h6>Antrean Login (Waiting Room)</h6><small class="text-muted d-block">CONTOH : <b>1</b> aktif / <b>0</b> mati</small></td>
 	            		<td><h6><?=htmlspecialchars(option('queue_enabled') === '' ? '1' : option('queue_enabled'))?></h6></td>
 	            		<td>
 	            			<button 
@@ -34,7 +32,9 @@
 					          class="btn btn-sm btn-info ml-1" 
 					          data-bs-target="#ajax-modal">
 					          	<i class="ti ti-pencil"></i> EDIT</button></td>
-	            	</tr>
+	            	</tr><?php
+						
+					/*
 	            	<tr>
 	            		<td><h6>Maks Slot Login Bersamaan</h6><small class="text-muted d-block">Default: <b>10</b></small></td>
 	            		<td><h6><?=htmlspecialchars(option('queue_max') === '' ? '10' : option('queue_max'))?></h6></td>
