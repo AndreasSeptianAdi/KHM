@@ -1,13 +1,18 @@
 <?=form_open('', ['id' => 'oktext']);?>
 <?=form_hidden('opt_name', get('opt_name'));?>
+<?php
+	$opt_val = option(get('opt_name'));
+?>
 <div class="card">
 	<div class="card-body">
 <div class="row">
 	<div class="col-md-12">
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="ovalue" id="tb-ovalue" value='<?=htmlspecialchars(option(get('opt_name')))?>'
-      />
-      <label for="tb-ovalue">Nilai (<?=htmlspecialchars(get('opt_name'))?>)</label>
+      <label for="tb-ovalue">Status</label>
+	  <select name="ovalue" id="tb-ovalue">
+		<option value="0" <?=($opt_val == 0)? 'selected' : ''?>>Tidak Aktif</option>
+		<option value="1" <?=($opt_val == 1)? 'selected' : ''?>>Aktif</option>
+	  </select>
     </div>
   </div>
 
