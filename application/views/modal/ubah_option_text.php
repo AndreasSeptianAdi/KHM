@@ -8,18 +8,19 @@
 <div class="row">
 	<div class="col-md-12">
     <div class="form-floating mb-3">
-      <label for="tb-ovalue">Status</label>
-	  <?php
+      <?php
 		if (get('opt_name') != 'queue_max'){
 	  ?>
-	  <select name="ovalue" id="tb-ovalue" class="form-control">
-		<option value="0" <?=($opt_val == 0)? 'selected' : ''?>>Tidak Aktif</option>
-		<option value="1" <?=($opt_val == 1)? 'selected' : ''?>>Aktif</option>
-	  </select>
+		<select name="ovalue" id="tb-ovalue" class="form-control">
+			<option value="0" <?=($opt_val == 0)? 'selected' : ''?>>Tidak Aktif</option>
+			<option value="1" <?=($opt_val == 1)? 'selected' : ''?>>Aktif</option>
+		</select>
+		<label for="tb-ovalue">Status</label>
 	  <?php
 		}else{
 	  ?>
 		<input type="text" class="form-control" name="ovalue" id="tb-ovalue" value='<?=htmlspecialchars(option(get('opt_name')))?>'/>
+		<label for="tb-ovalue">Jumlah Antrian</label>
 	  <?php
 		}
 	  ?>
