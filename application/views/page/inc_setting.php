@@ -32,12 +32,10 @@
 					          class="btn btn-sm btn-info ml-1" 
 					          data-bs-target="#ajax-modal">
 					          	<i class="ti ti-pencil"></i> EDIT</button></td>
-	            	</tr><?php
-						
-					/*
+	            	</tr>
 	            	<tr>
 	            		<td><h6>Maks Slot Login Bersamaan</h6><small class="text-muted d-block">Default: <b>10</b></small></td>
-	            		<td><h6><?=htmlspecialchars(option('queue_max') === '' ? '10' : option('queue_max'))?></h6></td>
+	            		<td><h6><?=htmlspecialchars(option('queue_max') === '' ? '50' : option('queue_max'))?></h6></td>
 	            		<td>
 	            			<button 
 	            				class="btn btn-sm btn-info" 
@@ -48,8 +46,7 @@
 					          class="btn btn-sm btn-info ml-1" 
 					          data-bs-target="#ajax-modal">
 					          	<i class="ti ti-pencil"></i> EDIT</button></td>
-	            	</tr>*/ 
-					?>
+	            	</tr>
 	            	<tr>
 	            		<td><h6>Setting Batas Akhir Pendaftaran Akun</h6></td>
 	            		<td><h6><?=$a=date('d F Y H:i A', strtotime(option('last_regis')))?></h6></td>
