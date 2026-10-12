@@ -9,7 +9,7 @@
 	<div class="col-md-12">
     <div class="form-floating mb-3">
       <label for="tb-ovalue">Status</label>
-	  <select name="ovalue" id="tb-ovalue">
+	  <select name="ovalue" id="tb-ovalue" class="form-control">
 		<option value="0" <?=($opt_val == 0)? 'selected' : ''?>>Tidak Aktif</option>
 		<option value="1" <?=($opt_val == 1)? 'selected' : ''?>>Aktif</option>
 	  </select>
