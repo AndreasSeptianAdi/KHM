@@ -25,7 +25,6 @@
         margin-bottom: 1rem;
       }
     </style>
-    <!-- <script src="<?=MIDTRANS_SNAP?>" data-client-key="<?=MIDTRANS_CLIENT_KEY?>"></script> -->
     <script type="text/javascript">
     // Queue heartbeat: pertahankan slot aktif selama user di dalam aplikasi
     (function(){
@@ -131,14 +130,14 @@
                   <span class="hide-menu">Data Pelari</span>
                 </a>
               </li>
-              <li class="sidebar-item">
+              <!-- <li class="sidebar-item">
                 <a class="sidebar-link" href="<?=base_url()?>page/datashuttle" aria-expanded="false">
                   <span>
                     <i class="ti ti-bus"></i>
                   </span>
                   <span class="hide-menu">Data Shuttle</span>
                 </a>
-              </li>
+              </li> -->
               <li class="sidebar-item">
                 <a class="sidebar-link" href="<?=base_url()?>page/email" aria-expanded="false">
                   <span>
@@ -188,14 +187,14 @@
                 </a>
               </li>
               <?php } ?>
-              <li class="sidebar-item">
+              <!-- <li class="sidebar-item">
                   <a class="sidebar-link" href="<?=base_url()?>page/shuttle" aria-expanded="false">
                     <span>
                       <i class="ti ti-bus"></i>
                     </span>
                     <span class="hide-menu">Daftar Shuttle</span>
                   </a>
-                </li>
+                </li> -->
               <li class="sidebar-item">
                 <a class="sidebar-link actLogout" href="#" aria-expanded="false">
                   <span class="d-flex">
