@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="zxx">
   <head>
+    <script data-queue-fair-client="kedirihalfmarathon" src="https://files.queue-fair.net/queue-fair-adapter.js"></script>
     <meta charset="utf-8">
     <title><?=APP_NAME?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
