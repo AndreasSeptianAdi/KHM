@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/png" href="<?=base_url()?>/assets/images/logos/logo_khm.png" />
     <link rel="stylesheet" href="<?=base_url()?>/assets/libs/owl.carousel/dist/assets/owl.carousel.min.css">
     <link id="themeColors" rel="stylesheet" href="<?=base_url()?>/assets/css/style.css?v=1.8" />
-    <link rel="stylesheet" href="<?=base_url()?>/assets/css/khm-fresh-2027.css?v=1.0" />
+    <link rel="stylesheet" href="<?=base_url()?>/assets/css/khm-softred-2027.css?v=1.0" />
     <script src="<?=base_url()?>assets/libs/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="<?=base_url()?>/assets/datatable_manual/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="<?=base_url('assets/datatable_manual/')?>select.dataTables.css" />

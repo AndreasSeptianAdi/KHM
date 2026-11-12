@@ -1,12 +1,12 @@
 <style>
-	:root{--accent:#41902f;--muted:#f3f4f6;--bg:#f2fbf0;--glass:rgba(255,255,255,0.06)}
+	:root{--accent:#b54a5a;--muted:#f3f4f6;--bg:#fdf6f7;--glass:rgba(255,255,255,0.06)}
 	.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-  .btn-primary{background:#41902f;color:#fff}
-  .btn-ghost{background:#fff;border:1px solid #c9ecbc;color:#244f21}
+  .btn-primary{background:#b54a5a;color:#fff}
+  .btn-ghost{background:#fff;border:1px solid #f0cdd3;color:#7d3140}
   .countdown{display:inline-flex;gap:8px;margin-top:14px}
   .countdown .part{background:var(--glass);padding:10px 12px;border-radius:10px;min-width:64px;text-align:center}
   .part .num{font-weight:800;font-size:18px}
-												    .part .label{font-size:11px;color:#4a6b46;margin-top:4px}
+												    .part .label{font-size:11px;color:#7a5a60;margin-top:4px}
 </style>
 <script>
 	function pad(n){return n.toString().padStart(2,'0')}
@@ -58,31 +58,31 @@
 			          					<style>
 												    *{box-sizing:border-box}
 												    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-												    body{ color:#1c3d1e;align-items:center;justify-content:center;}
-												    .card{width:100%;max-width:980px;background:#ffffff;border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(65,144,47,.14);backdrop-filter: blur(6px)}
+												    body{ color:#5e2632;align-items:center;justify-content:center;}
+												    .card{width:100%;max-width:980px;background:#ffffff;border-radius:18px;padding:32px;box-shadow:0 10px 30px rgba(181,74,90,.14);backdrop-filter: blur(6px)}
 												    .row{display:inline-flex;gap:24px;align-items:center}
 												    .left{flex:1}
 												    .right{width:320px}
 												    h1{margin:0;font-size:28px;letter-spacing:0.6px}
-												    p.lead{margin:12px 0 20px;color:#4a6b46}
+												    p.lead{margin:12px 0 20px;color:#7a5a60}
 												    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-												    .btn-primary{background:#41902f;color:#fff}
-												    .btn-ghost{background:#fff;border:1px solid #c9ecbc;color:#244f21}
+												    .btn-primary{background:#b54a5a;color:#fff}
+												    .btn-ghost{background:#fff;border:1px solid #f0cdd3;color:#7d3140}
 												    .countdown{display:flex;gap:8px;margin-top:14px}
 												    .countdown .part{background:var(--glass);padding:10px 12px;border-radius:10px;min-width:64px;text-align:center}
 												    .part .num{font-weight:800;font-size:18px}
-												    .part .label{font-size:11px;color:#4a6b46;margin-top:4px}
+												    .part .label{font-size:11px;color:#7a5a60;margin-top:4px}
 												    .subscribe{margin-top:18px;display:flex;gap:8px}
-												    .subscribe input{flex:1;padding:10px;border-radius:10px;border:1px solid #c9ecbc;background:#fff;color:#1c3d1e}
+												    .subscribe input{flex:1;padding:10px;border-radius:10px;border:1px solid #f0cdd3;background:#fff;color:#5e2632}
 												    .subscribe button{padding:10px 12px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:600}
-												    .meta{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:#6b8a66;font-size:13px}
+												    .meta{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:#96797e;font-size:13px}
 												    .socials{display:flex;gap:8px}
 												    .dot{height:10px;width:10px;border-radius:50%;display:inline-block}
 												    .sponsors{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-												    .sponsor{background:#f2fbf0;padding:8px 12px;border-radius:8px;font-size:13px;color:#4a6b46;border:1px solid #d9efcf}
-												    .progress{height:10px;background:#d9efcf;border-radius:999px;overflow:hidden;margin-top:14px}
-												    .progress > i{display:block;height:100%;width:36%;background:#41902f}
-												    footer{margin-top:18px;color:#6b8a66;font-size:13px}
+												    .sponsor{background:#fdf6f7;padding:8px 12px;border-radius:8px;font-size:13px;color:#7a5a60;border:1px solid #f3dfe2}
+												    .progress{height:10px;background:#f3dfe2;border-radius:999px;overflow:hidden;margin-top:14px}
+												    .progress > i{display:block;height:100%;width:36%;background:#b54a5a}
+												    footer{margin-top:18px;color:#96797e;font-size:13px}
 												    /* Responsive */
 												    @media (max-width:800px){.row{flex-direction:row}.right{width:100%}}
 												  </style>

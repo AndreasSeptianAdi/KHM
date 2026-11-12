@@ -21,15 +21,15 @@ try {
 } catch (Exception $e) { $__q_enabled = false; $__q_can = true; }
 ?>
 <style>
-  .queue-box{border:1px solid #dcefce;background:linear-gradient(135deg,#f7fdf5,#eef9e9);border-radius:16px;padding:18px 18px 16px;margin-bottom:20px;text-align:center}
+  .queue-box{border:1px solid #f3dfe2;background:linear-gradient(135deg,#fdf9f9,#fbf0f2);border-radius:16px;padding:18px 18px 16px;margin-bottom:20px;text-align:center}
   .queue-box.waiting{border-color:#f0d9a8;background:linear-gradient(135deg,#fffdf4,#fef6df)}
-  .queue-num{font-size:44px;font-weight:800;color:#2f6e26;line-height:1;margin:6px 0}
+  .queue-num{font-size:44px;font-weight:800;color:#9c3d4c;line-height:1;margin:6px 0}
   .queue-box.waiting .queue-num{color:#9a6b12}
-  .queue-label{font-size:13px;color:#4a6b46;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
-  .queue-sub{font-size:13px;color:#6b8a66;margin-top:6px}
-  .queue-bar{height:8px;background:#e4ecdf;border-radius:999px;overflow:hidden;margin-top:12px}
-  .queue-bar > i{display:block;height:100%;background:linear-gradient(90deg,#41902f,#7ec964);border-radius:999px;transition:width .6s}
-  .queue-spin{display:inline-block;width:18px;height:18px;border:3px solid #c9ecbc;border-top-color:#41902f;border-radius:50%;animation:qspin 1s linear infinite;vertical-align:-3px;margin-right:8px}
+  .queue-label{font-size:13px;color:#7a5a60;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+  .queue-sub{font-size:13px;color:#96797e;margin-top:6px}
+  .queue-bar{height:8px;background:#efe2e4;border-radius:999px;overflow:hidden;margin-top:12px}
+  .queue-bar > i{display:block;height:100%;background:linear-gradient(90deg,#b54a5a,#e0a3ad);border-radius:999px;transition:width .6s}
+  .queue-spin{display:inline-block;width:18px;height:18px;border:3px solid #f0cdd3;border-top-color:#b54a5a;border-radius:50%;animation:qspin 1s linear infinite;vertical-align:-3px;margin-right:8px}
   @keyframes qspin{to{transform:rotate(360deg)}}
   #loginWrap.locked{opacity:.45;pointer-events:none;filter:grayscale(.3)}
 </style>
