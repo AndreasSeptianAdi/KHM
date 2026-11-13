@@ -56,7 +56,7 @@
                   name="expired"
                   class="form-control"
                   id="tb-expired"
-                  value="2027-08-31"
+                  value="2027-11-31"
                 />
                 <label for="tb-expired">Berlaku Sampai</label>
               </div>
