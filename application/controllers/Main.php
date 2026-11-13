@@ -23,6 +23,9 @@ class Main extends CI_Controller {
 				$alowed_page = ['','index','daftar_lari','daftar','checkout','shuttle'];
 				if ((userid() != 1) && (!in_array($filename, $alowed_page))){
 					$this->empatkosongempat();
+					// harus berhenti di sini, sebelumnya halaman admin tetap
+					// ikut ter-render di bawah tampilan 404
+					return;
 				}
 				$this->data['idData']	= $idData;			
 				$this->data['content'] = $this->load->view('page/inc_'.$filename.'', $this->data, true);
@@ -78,10 +81,16 @@ class Main extends CI_Controller {
 	public function postdataadmin( $model = null, $function = null )
 	{
 
-		if ($this->session->userdata('logged_in') == true){
-			if ($this->session->userdata('user_id') != '1'){
-				$this->empatkosongempat();
-			}
+		// WAJIB login sebagai admin.
+		// Sebelumnya pengunjung yang BELUM login lolos dari pengecekan dan bisa
+		// memanggil fungsi adminmodel apa pun (mis. admindata/save_voucher).
+		if ($this->session->userdata('logged_in') != true){
+			$this->empatkosongempat();
+			return;
+		}
+		if ($this->session->userdata('user_id') != '1'){
+			$this->empatkosongempat();
+			return;
 		}
 	
 		$this->load->model( $model );
@@ -152,10 +161,16 @@ class Main extends CI_Controller {
 
 	public function adminmodal( $filename = 'null', $data = '' )
 	{
-		if ($this->session->userdata('logged_in') == true){
-			if ($this->session->userdata('user_id') != '1'){
-				$this->empatkosongempat();
-			}
+		// WAJIB login sebagai admin.
+		// Sebelumnya pengunjung yang BELUM login tetap mendapat isi modal admin,
+		// termasuk modal/voucher_kode yang memuat seluruh kode voucher.
+		if ($this->session->userdata('logged_in') != true){
+			$this->empatkosongempat();
+			return;
+		}
+		if ($this->session->userdata('user_id') != '1'){
+			$this->empatkosongempat();
+			return;
 		}
 
 		if ( file_exists('application/views/modal/'.$filename.'.php') ) {

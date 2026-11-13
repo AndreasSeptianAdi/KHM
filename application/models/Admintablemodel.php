@@ -91,6 +91,74 @@ class Admintablemodel extends CI_Model {
     return $query->result();
   }
   
+  ////////////////////////////////////////
+  // VOUCHER
+
+  private function _where_voucher()
+  {
+    if (get('kat') != ''){
+      $this->db->where('voucher_kategori', get('kat'));
+    }
+    if (get('used') != ''){
+      $this->db->where('voucher_used', get('used'));
+    }
+    if (get('status') != ''){
+      $this->db->where('voucher_status', get('status'));
+    }
+    if (get('batchcode') != ''){
+      $this->db->where('voucher_batchcode', get('batchcode'));
+    }
+  }
+
+  function get_voucher()
+  {
+    switch ($_GET['order'][0]['column']) {
+      case '1':
+        $ordering = 'voucher_code';
+        break;
+      case '2':
+        $ordering = 'kategori_name';
+        break;
+      case '3':
+        $ordering = 'voucher_batch';
+        break;
+      case '4':
+        $ordering = 'voucher_status';
+        break;
+      case '5':
+        $ordering = 'voucher_useddate';
+        break;
+      case '6':
+        $ordering = 'voucher_expired';
+        break;
+      case '7':
+        $ordering = 'voucher_created';
+        break;
+      default:
+        $ordering = 'voucher_id';
+        break;
+    }
+    $this->db->join('master_kategori', 'kategori_id = voucher_kategori', 'left');
+    $this->db->join('master_pelari', 'pelari_id = voucher_pelari', 'left');
+    $this->db->join('master_user', 'user_id = voucher_user', 'left');
+    $this->_where_voucher();
+    $this->db->order_by($ordering, $_GET['order'][0]['dir']);
+    $this->_get_datatables_query(['master_voucher','master_kategori']);
+    if($_GET['length'] != -1)
+    $this->db->limit($_GET['length'], $_GET['start']);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  function count_filtered_voucher()
+  {
+    $this->_where_voucher();
+    $this->_get_datatables_query(['master_voucher']);
+    $query = $this->db->get();
+    return $query->num_rows();
+  }
+  ////////////////////////////////////////
+
   function get_user()
   {
   	switch ($_GET['order'][0]['column']) {

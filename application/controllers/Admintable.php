@@ -59,6 +59,90 @@ class Admintable extends CI_Controller {
     echo json_encode($output);
   } 
 
+  function voucher(){
+
+    // kode voucher bersifat RAHASIA, endpoint ini hanya untuk admin
+    if (($this->session->userdata('logged_in') != true) || ($this->session->userdata('user_id') != '1')){
+      $output = array(
+        "draw" => get('draw'),
+        "recordsTotal" => 0,
+        "recordsFiltered" => 0,
+        "data" => array(),
+        "error" => "Akses Ditolak",
+      );
+      echo json_encode($output);
+      return;
+    }
+
+    $list = $this->admintablemodel->get_voucher();
+    $data = array();
+    $no = get('start');
+    foreach ($list as $view) {
+      $no++;
+      $row = array();
+      $row[] = $no;
+      $row[] = '<span class="fw-semibold" style="letter-spacing:1px">'.$view->voucher_code.'</span>';
+      $row[] = $view->kategori_name;
+
+      $batch = ($view->voucher_batch != '')? $view->voucher_batch : '-';
+      $row[] = $batch.'<br><small>'.$view->voucher_batchcode.'</small>';
+
+      $kadalu = (($view->voucher_expired != null) && ($view->voucher_expired != '') && ($view->voucher_expired < date('Y-m-d H:i:s')));
+      if ($view->voucher_status == '1'){
+        $status = ($kadalu)? '<span class="text-warning">Kadaluarsa</span>' : '<span class="text-success">Aktif</span>';
+      }else{
+        $status = '<span class="text-danger">Nonaktif</span>';
+      }
+      $row[] = $status;
+
+      if ($view->voucher_used == 'T'){
+        $bib = ($view->pelari_bib != '')? ' - BIB '.$view->pelari_bib : '';
+        $row[] = '<span class="text-success">Terpakai</span><br>'.$view->pelari_name.'<br><small>'.$view->user_email.$bib.'</small>';
+      }else{
+        $row[] = '<span class="text-warning">Belum Terpakai</span>';
+      }
+
+      $row[] = (($view->voucher_expired != null) && ($view->voucher_expired != ''))? date('d F Y H:i', strtotime($view->voucher_expired)) : '-';
+      $row[] = date('d F Y H:i', strtotime($view->voucher_created));
+
+      $lihat ='<button
+          type="button"
+          data-bs-toggle="modal"
+          data-modalsize="modal-lg"
+          title="Lihat Kode Batch"
+          data-title="Kode Voucher - '.$view->voucher_batchcode.'"
+          data-href="'.base_url('adminmodal/voucher_kode?batchcode='.$view->voucher_batchcode).'"
+          class="btn btn-sm btn-info ml-1"
+          data-bs-target="#ajax-modal">
+          <i class="fa fa-eye"></i>
+        </button>';
+
+      if ($view->voucher_status == '1'){
+        $toggle = '<a href="javascript:void(0);" onclick="ubah_status_voucher('.$view->voucher_id.', \'1\' )" title="Nonaktifkan" class="btn btn-warning btn-sm ml-1" data-id="'.$view->voucher_id.'"><i class="fas fa-ban"></i></a>';
+      }else{
+        $toggle = '<a href="javascript:void(0);" onclick="ubah_status_voucher('.$view->voucher_id.', \'0\' )" title="Aktifkan" class="btn btn-success btn-sm ml-1" data-id="'.$view->voucher_id.'"><i class="fas fa-check"></i></a>';
+      }
+
+      if ($view->voucher_used == 'T'){
+        $hapus = '';
+      }else{
+        $hapus = '<a href="javascript:void(0);" onclick="hapus_voucher('.$view->voucher_id.')" title="Hapus" class="btn btn-danger btn-sm ml-1" data-id="'.$view->voucher_id.'"><i class="fas fa-trash"></i></a>';
+      }
+
+      $row[] = $lihat.' '.$toggle.' '.$hapus;
+
+      $data[] = $row;
+    }
+
+    $output = array(
+      "draw" => get('draw'),
+      "recordsTotal" => $this->admintablemodel->count_all_data('voucher'),
+      "recordsFiltered" => $this->admintablemodel->count_filtered_voucher(),
+      "data" => $data,
+    );
+    echo json_encode($output);
+  }
+
   function user(){
 
     $list = $this->admintablemodel->get_user();

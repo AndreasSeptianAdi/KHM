@@ -107,6 +107,14 @@
                 </a>
               </li>
               <li class="sidebar-item">
+                <a class="sidebar-link" href="<?=base_url()?>page/voucher" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-ticket"></i>
+                  </span>
+                  <span class="hide-menu">Voucher</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
                 <a class="sidebar-link" href="<?=base_url()?>page/user" aria-expanded="false">
                   <span>
                     <i class="ti ti-user"></i>
