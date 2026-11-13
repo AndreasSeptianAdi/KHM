@@ -20,3 +20,5 @@ application/logs/*
 application/config/config.php
 application/config/database.php
 setting.php
+.DS_Store
+*/.DS_Store
