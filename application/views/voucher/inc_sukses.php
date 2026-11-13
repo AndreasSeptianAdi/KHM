@@ -22,8 +22,8 @@
   <div class="alert alert-info mt-4 text-start">
     <i class="ti ti-info-circle"></i>
     Simpan QR code ini untuk <b>pengambilan paket lari</b>.
-    Anda juga bisa login menggunakan email dan password yang tadi didaftarkan
-    untuk melihat data pendaftaran Anda.
+    Data pendaftaran Anda sudah tersimpan di akun
+    <b><?=html_escape($info['email'])?></b>.
   </div>
 
   <div class="d-md-flex align-items-center justify-content-center mt-3">
@@ -33,10 +33,10 @@
         Cetak / Simpan PDF
       </div>
     </button>
-    <a href="<?=base_url()?>" class="btn btn-info font-medium rounded-pill px-4">
+    <a href="<?=base_url('page/daftar_lari')?>" class="btn btn-info font-medium rounded-pill px-4">
       <div class="d-flex align-items-center">
-        <i class="ti ti-login me-2 fs-4"></i>
-        Login Ke Akun Saya
+        <i class="ti ti-user me-2 fs-4"></i>
+        Lihat Data Pelari Saya
       </div>
     </a>
   </div>

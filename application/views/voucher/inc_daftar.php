@@ -24,31 +24,13 @@
 
   <div class="row">
     <div class="col-md-12" style="background-color: #deecff;">
-      <h6 class="p-2">-- Akun Login &amp; Konfirmasi Email --</h6>
+      <h6 class="p-2">-- Akun Login --</h6>
       <div class="row">
-        <div class="col-md-4">
-          <div class="form-floating mb-3">
-            <input type="text" name="email" class="form-control" id="tb-email" placeholder="" autocomplete="off" />
-            <label for="tb-email">Email</label>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-floating mb-3">
-            <input type="password" name="password" class="form-control" id="tb-password" placeholder="" autocomplete="new-password" />
-            <label for="tb-password">Password</label>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-floating mb-3">
-            <input type="password" name="repassword" class="form-control" id="tb-repassword" placeholder="" autocomplete="new-password" />
-            <label for="tb-repassword">Ulangi Password</label>
-          </div>
-        </div>
         <div class="col-md-12 px-4 pb-2">
           <small>
             <i class="ti ti-info-circle"></i>
-            Email dipakai untuk mengirim nomor BIB. Jika email Anda <b>sudah pernah terdaftar</b>,
-            password lama tetap berlaku dan kolom password di atas boleh dikosongkan.
+            Data pelari ini disimpan ke akun <b><?=html_escape($this->session->userdata('user_email'))?></b>.
+            Nomor BIB dan QR code akan dikirim ke email tersebut.
           </small>
         </div>
       </div>

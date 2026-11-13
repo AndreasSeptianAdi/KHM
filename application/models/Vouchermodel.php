@@ -1,13 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Model untuk pendaftaran lewat VOUCHER (halaman publik, tanpa login).
+ * Model untuk pendaftaran lari lewat VOUCHER (di dalam aplikasi, wajib login).
  *
  * Alur:
- *  1. Peserta buka halaman voucher -> input kode -> cek_voucher()
- *  2. Kalau asli, kode disimpan di session lalu peserta isi data pelari
- *  3. save_pelari_voucher() membuat akun + data pelari + nomor BIB sekaligus,
- *     lalu voucher ditandai terpakai.
+ *  1. Peserta register + login lewat alur biasa (auth/register, auth/login)
+ *  2. Menu "Daftar Pelari" diarahkan ke halaman voucher -> input kode -> cek_voucher()
+ *  3. Kalau asli, kode disimpan di session lalu peserta isi data pelari
+ *  4. save_pelari_voucher() menyimpan data pelari + nomor BIB untuk user yang
+ *     sedang login, lalu voucher ditandai terpakai. Tidak ada akun baru dibuat.
  *
  * PENTING: kuota kategori (kategori_kuota) TIDAK dipotong di sini, karena sudah
  * dipotong oleh admin saat men-generate voucher (Adminmodel::save_voucher).
@@ -111,8 +112,9 @@ class Vouchermodel extends CI_Model {
 
 	/**
 	 * Simpan data pelari dari pendaftaran voucher.
-	 * Membuat akun user (kalau email baru) + data pelari + nomor BIB sekaligus,
-	 * lalu menandai voucher jadi terpakai. Semuanya dalam 1 transaksi DB.
+	 * Memakai akun user yang sedang login (tidak membuat akun baru), menyimpan
+	 * data pelari + nomor BIB, lalu menandai voucher jadi terpakai.
+	 * Semuanya dalam 1 transaksi DB.
 	 */
 	public function save_pelari_voucher($value='')
 	{
@@ -129,22 +131,27 @@ class Vouchermodel extends CI_Model {
 			return $return;
 		}
 
-		$email    = strtolower(trim(post('email')));
-		$user_ada = $this->db->get_where('master_user', array('user_email' => $email))->row();
-
-		if (!empty($user_ada)){
-			$pelari_ada = $this->db->get_where('master_pelari', array('pelari_user' => $user_ada->user_id))->row();
-			if (!empty($pelari_ada) && ($pelari_ada->pelari_kategori != '')){
-				$return['message'] = 'Email ini sudah terdaftar sebagai pelari. Silahkan login di halaman registrasi utama.';
-				return $return;
-			}
+		// Akun login sudah dibuat lewat registrasi biasa (auth/register),
+		// jadi di sini tinggal memakai user yang sedang login.
+		if ($this->session->userdata('logged_in') != TRUE){
+			$return['message'] = 'Silakan login terlebih dahulu.';
+			return $return;
 		}
-
-		$this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email');
+		$user_id  = userid();
+		$user_ada = $this->db->get_where('master_user', array('user_id' => $user_id))->row();
 		if (empty($user_ada)){
-			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
-			$this->form_validation->set_rules('repassword', 'Ulangi Password', 'trim|required|min_length[6]|matches[password]');
+			$return['message'] = 'Akun Anda tidak ditemukan, silahkan login ulang.';
+			return $return;
 		}
+		$email = $user_ada->user_email;
+
+		// satu akun hanya boleh punya satu data pelari
+		$pelari_ada = $this->db->get_where('master_pelari', array('pelari_user' => $user_id))->row();
+		if (!empty($pelari_ada) && ($pelari_ada->pelari_kategori != '')){
+			$return['message'] = 'Akun ini sudah terdaftar sebagai pelari.';
+			return $return;
+		}
+
 		$this->form_validation->set_rules('name', 'Nama Lengkap', 'trim|required');
 		$this->form_validation->set_rules('identitas', 'No Identitas', 'trim|required|is_unique[master_pelari.pelari_identitas]');
 		$this->form_validation->set_rules('sex', 'Jenis Kelamin', 'trim|required');
@@ -222,18 +229,8 @@ class Vouchermodel extends CI_Model {
 			return $return;
 		}
 
-		// 1) akun login peserta
-		if (!empty($user_ada)){
-			$user_id = $user_ada->user_id;
-		}else{
-			$this->db->insert('master_user', array(
-				'user_email'    => $email,
-				'user_password' => md5(post('password')),
-				'user_status'   => '1',
-				'user_created'  => date('Y-m-d H:i:s'),
-			));
-			$user_id = $this->db->insert_id();
-		}
+		// 1) akun login peserta SUDAH ADA (dibuat lewat registrasi biasa),
+		//    jadi tidak ada master_user baru yang dibuat di sini.
 
 		// 2) data pelari + nomor BIB sekaligus (voucher gratis, BIB langsung keluar)
 		$no_bib = $kat->kategori_prefix.''.$kat->kategori_startid;

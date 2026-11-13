@@ -1,8 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Halaman PUBLIK pendaftaran lewat VOUCHER.
- * URL-nya terpisah dari registrasi utama dan TIDAK membutuhkan login.
+ * Pendaftaran lari lewat VOUCHER.
+ *
+ * Halaman ini berada DI DALAM aplikasi (wajib login) dan memakai layout utama
+ * app_index.php, jadi menu sidebar tetap tampil seperti halaman lain.
+ * Akun peserta dibuat lewat alur registrasi biasa (auth/register lalu
+ * auth/login) dan TIDAK diubah sama sekali.
+ *
+ * Titik masuknya: menu "Daftar Pelari" (page/daftar) diarahkan ke /voucher
+ * ketika peserta belum punya data pelari sama sekali.
  *
  *  /voucher              -> step 1: cek keaslian voucher
  *  /voucher/kode/{KODE}  -> sama, kode terisi otomatis (buat link/QR share)
@@ -21,12 +28,36 @@ class Voucher extends CI_Controller {
 	}
 
 	/**
-	 * Bungkus view voucher ke dalam layout publik.
+	 * Bungkus view voucher ke dalam layout utama supaya sidebar tetap tampil.
 	 */
 	private function render($view = '', $data = array())
 	{
 		$data['content'] = $this->load->view('voucher/'.$view, $data, TRUE);
-		$this->load->view('app_voucher', $data);
+		$this->load->view('app_index', $data);
+	}
+
+	/**
+	 * Guard 1 - wajib login. Akun dibuat lewat registrasi biasa, bukan di sini.
+	 */
+	private function butuh_login()
+	{
+		if ($this->session->userdata('logged_in') != TRUE){
+			redirect('auth/login');
+		}
+	}
+
+	/**
+	 * Guard 2 - peserta belum boleh punya data pelari, supaya tidak dobel.
+	 * userdata() bisa mengembalikan array kalau user punya banyak baris pelari
+	 * (pendaftaran group), jadi diambil baris pertamanya dulu.
+	 */
+	private function belum_terdaftar()
+	{
+		$saya = userdata();
+		if (is_array($saya)){ $saya = reset($saya); }
+		if (!empty($saya) && !empty($saya->pelari_kategori)){
+			redirect('page/daftar_lari');
+		}
 	}
 
 	/**
@@ -34,6 +65,9 @@ class Voucher extends CI_Controller {
 	 */
 	public function index($kode = '')
 	{
+		$this->butuh_login();
+		$this->belum_terdaftar();
+
 		// kalau sudah terverifikasi dan belum dipakai, langsung lanjut ke form
 		if ($this->session->userdata('voucher_code') != ''){
 			redirect('voucher/daftar');
@@ -50,6 +84,15 @@ class Voucher extends CI_Controller {
 	public function cek()
 	{
 		$this->output->set_content_type('application/json');
+
+		if ($this->session->userdata('logged_in') != TRUE){
+			echo json_encode(array(
+				'status'  => FALSE,
+				'type'    => 'error',
+				'message' => 'Silakan login terlebih dahulu.',
+			));
+			return;
+		}
 
 		$hasil = $this->vouchermodel->cek_voucher(post('kode'));
 
@@ -69,6 +112,9 @@ class Voucher extends CI_Controller {
 	 */
 	public function daftar()
 	{
+		$this->butuh_login();
+		$this->belum_terdaftar();
+
 		$kode = $this->session->userdata('voucher_code');
 		if ($kode == ''){
 			redirect('voucher');
@@ -92,6 +138,16 @@ class Voucher extends CI_Controller {
 	public function simpan()
 	{
 		$this->output->set_content_type('application/json');
+
+		if ($this->session->userdata('logged_in') != TRUE){
+			echo json_encode(array(
+				'status'  => FALSE,
+				'type'    => 'error',
+				'message' => 'Silakan login terlebih dahulu.',
+			));
+			return;
+		}
+
 		$hasil = $this->vouchermodel->save_pelari_voucher();
 		echo json_encode($hasil);
 	}
@@ -107,12 +163,16 @@ class Voucher extends CI_Controller {
 
 	/**
 	 * Step 3 - halaman sukses berisi nomor BIB + QR code.
+	 * Sengaja TIDAK memakai belum_terdaftar(), karena setelah sukses menyimpan
+	 * peserta sudah punya data pelari dan halaman ini harus tetap bisa dibuka.
 	 */
 	public function sukses()
 	{
+		$this->butuh_login();
+
 		$info = $this->session->userdata('voucher_sukses');
 		if (empty($info)){
-			redirect('voucher');
+			redirect('page/daftar_lari');
 			return;
 		}
 
@@ -123,3 +183,4 @@ class Voucher extends CI_Controller {
 
 /* End of file Voucher.php */
 /* Location: ./application/controllers/Voucher.php */
+

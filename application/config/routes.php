@@ -20,7 +20,7 @@ $route['maindata/(:any)'] 					= 'main/postdata/mainmodel/$1';
 $route['userpay/(:any)'] 					  = 'payment/$1';
 $route['userpay/(:any)/(:any)'] 	  = 'payment/$1/$2';
 
-// ---- pendaftaran lewat voucher (halaman publik, tanpa login) ----
+// ---- pendaftaran lari lewat voucher (di dalam aplikasi, wajib login) ----
 $route['voucher']                = 'voucher/index';
 $route['voucher/kode/(:any)']    = 'voucher/index/$1';
 $route['voucher/cek']            = 'voucher/cek';

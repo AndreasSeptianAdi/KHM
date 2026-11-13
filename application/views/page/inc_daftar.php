@@ -33,6 +33,11 @@
 	    					redirect(base_url('page/'),'refresh');
 	    				}
 	    			}
+	    			// KHM27: pendaftaran lari baru WAJIB lewat voucher.
+	    			// Kategori lari ditentukan oleh voucher, bukan dipilih peserta,
+	    			// jadi pilihan kategori di bawah ini tidak dipakai lagi.
+	    			redirect(base_url('voucher'),'refresh');
+
 	    			?>
 			      <div class="card-body">
 		          <div class="row mb-5">
