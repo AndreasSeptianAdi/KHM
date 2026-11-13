@@ -1,14 +1,22 @@
-<div class="text-center mb-4">
-  <h5 class="card-title fw-semibold">Cek Keaslian Voucher</h5>
-  <p class="text-muted">
-    Masukkan <b>16 karakter</b> kode voucher yang Anda terima.<br>
-    Setelah kode terverifikasi, Anda akan diarahkan untuk mengisi data pelari.
-  </p>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
+            <div class="mb-3 mb-sm-0">
+              <h5 class="card-title fw-semibold">Cek Keaslian Voucher</h5>
+            </div>
+          </div>
+
+          <p class="text-muted text-center">
+            Masukkan <b>16 karakter</b> kode voucher yang Anda terima.<br>
+            Setelah kode terverifikasi, Anda akan diarahkan untuk mengisi data pelari.
+          </p>
 
 <?=form_open('', ['id' => 'form_cek']);?>
   <div class="row justify-content-md-center">
-    <div class="col-md-8">
+    <div class="col-md-6 col-lg-5">
       <div class="form-floating mb-3">
         <input
           type="text"
@@ -38,6 +46,11 @@
     </div>
   </div>
 <?=form_close();?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   // paksa huruf besar & buang karakter yang tidak perlu saat mengetik

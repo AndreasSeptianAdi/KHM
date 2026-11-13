@@ -3,40 +3,35 @@
   $kaos_finish  = ($kategori->kategori_kaosfinish == 'T');
   $is_pelajar   = ($kategori->kategori_kategori == 'pelajar');
 ?>
-<div class="d-sm-flex d-block align-items-center justify-content-between mb-4">
-  <div class="mb-3 mb-sm-0">
-    <h5 class="card-title fw-semibold">Registrasi Voucher</h5>
-  </div>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
+            <div class="mb-3 mb-sm-0">
+              <h5 class="card-title fw-semibold">Registrasi Voucher</h5>
+            </div>
+          </div>
 
 <div class="alert alert-success">
   <i class="ti ti-circle-check"></i> <b>Voucher Terverifikasi</b>
   <div class="row mt-2">
-    <div class="col-md-4">Kode Voucher<br><span class="kode-voucher"><?=html_escape($kode_voucher)?></span></div>
-    <div class="col-md-4">Kategori Lomba<br><b><?=html_escape($kategori->kategori_name)?></b></div>
-    <div class="col-md-4">Tipe Kategori<br><b><?=humanize($kategori->kategori_kategori)?></b></div>
+    <div class="col-md-3">Kode Voucher<br><span class="kode-voucher"><?=html_escape($kode_voucher)?></span></div>
+    <div class="col-md-3">Kategori Lomba<br><b><?=html_escape($kategori->kategori_name)?></b></div>
+    <div class="col-md-3">Tipe Kategori<br><b><?=humanize($kategori->kategori_kategori)?></b></div>
+    <div class="col-md-3">Terdaftar Sebagai<br><b><?=html_escape($this->session->userdata('user_email'))?></b></div>
   </div>
-  <small>Pendaftaran ini <b>GRATIS</b>. Kategori lari sudah terkunci sesuai voucher dan tidak dapat diubah.</small>
+  <small>
+    Pendaftaran ini <b>GRATIS</b>. Kategori lari sudah terkunci sesuai voucher dan tidak dapat diubah.
+    Nomor BIB dan QR code akan dikirim ke email di atas.
+  </small>
 </div>
 
 <?=form_open('', ['id' => 'pelari']);?>
   <?=form_hidden('voucher_code', $kode_voucher);?>
 
   <div class="row">
-    <div class="col-md-12" style="background-color: #deecff;">
-      <h6 class="p-2">-- Akun Login --</h6>
-      <div class="row">
-        <div class="col-md-12 px-4 pb-2">
-          <small>
-            <i class="ti ti-info-circle"></i>
-            Data pelari ini disimpan ke akun <b><?=html_escape($this->session->userdata('user_email'))?></b>.
-            Nomor BIB dan QR code akan dikirim ke email tersebut.
-          </small>
-        </div>
-      </div>
-    </div>
-    <hr>
-
     <div class="col-md-6">
       <h6>-- Info Kontak Pribadi --</h6>
       <div class="form-floating mb-3">
@@ -221,6 +216,11 @@
     </div>
   </div>
 <?=form_close();?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(".angka").keypress(function(data){

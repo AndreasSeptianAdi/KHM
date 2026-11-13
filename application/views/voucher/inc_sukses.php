@@ -1,3 +1,19 @@
+<style>
+  /* hanya berlaku ketika halaman sukses ini dicetak:
+     sidebar, header, dan tombol disembunyikan agar hasil cetak bersih */
+  @media print{
+    .left-sidebar,
+    .page-wrapper header{ display: none !important; }
+    .page-wrapper{ margin-left: 0 !important; }
+    .card{ box-shadow: none !important; border: 0 !important; }
+    .btn{ display: none !important; }
+  }
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
 <div class="text-center">
   <i class="ti ti-circle-check text-success" style="font-size:64px"></i>
   <h4 class="card-title fw-semibold mt-3">Pendaftaran Berhasil</h4>
@@ -39,5 +55,10 @@
         Lihat Data Pelari Saya
       </div>
     </a>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
