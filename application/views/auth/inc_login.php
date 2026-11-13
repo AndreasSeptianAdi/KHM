@@ -1,4 +1,4 @@
-<?php $this->load->view('auth/inc_queue_gate'); ?>
+
 <div id="loginWrap">
 <form id="loginForm">
   <label for="email">Email</label>
