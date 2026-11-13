@@ -52,11 +52,11 @@
             <div class="col-md-6">
               <div class="form-floating mb-3">
                 <input
-                  type="datetime"
+                  type="date"
                   name="expired"
                   class="form-control"
                   id="tb-expired"
-                  placeholder="2027-08-31 23:59:59"
+                  value="2027-08-31"
                 />
                 <label for="tb-expired">Berlaku Sampai</label>
               </div>
