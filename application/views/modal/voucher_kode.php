@@ -9,11 +9,21 @@
   $terpakai = 0;
   $kategori_name = '';
   $batch_label   = '';
+  $nasabah       = '';
+  $norekening    = '';
+  $cabang        = '';
+  $expired_label = '-';
   $kode_list     = array();
   foreach ($vouchers as $v) {
     if ($v->voucher_used == 'T'){ $terpakai++; }
     $kategori_name = $v->kategori_name;
     $batch_label   = $v->voucher_batch;
+    $nasabah       = isset($v->voucher_nasabah)? $v->voucher_nasabah : '';
+    $norekening    = isset($v->voucher_norekening)? $v->voucher_norekening : '';
+    $cabang        = isset($v->voucher_cabang)? $v->voucher_cabang : '';
+    if (($v->voucher_expired != null) && ($v->voucher_expired != '')){
+      $expired_label = date('d F Y H:i', strtotime($v->voucher_expired));
+    }
     $kode_list[]   = $v->voucher_code;
   }
 ?>
@@ -22,9 +32,15 @@
     <div class="card">
       <div class="card-body">
         <div class="row mb-3">
+          <div class="col-md-3"><b>Nama Nasabah</b><br><?=($nasabah != '')? html_escape($nasabah) : '-'?></div>
+          <div class="col-md-3"><b>Nomor Rekening</b><br><?=($norekening != '')? html_escape($norekening) : '-'?></div>
+          <div class="col-md-3"><b>Bank Jatim Cabang</b><br><?=($cabang != '')? html_escape($cabang) : '-'?></div>
+          <div class="col-md-3"><b>Kategori Lomba</b><br><?=html_escape($kategori_name)?></div>
+        </div>
+        <div class="row mb-3">
           <div class="col-md-3"><b>Kode Batch</b><br><?=$batchcode?></div>
           <div class="col-md-3"><b>Label</b><br><?=($batch_label != '')? html_escape($batch_label) : '-'?></div>
-          <div class="col-md-3"><b>Kategori Lomba</b><br><?=html_escape($kategori_name)?></div>
+          <div class="col-md-3"><b>Berlaku Sampai</b><br><?=$expired_label?></div>
           <div class="col-md-3"><b>Total / Terpakai</b><br><?=$total?> / <?=$terpakai?></div>
         </div>
 
@@ -32,11 +48,14 @@
           <div class="alert alert-warning">Tidak ada voucher pada batch ini.</div>
         <?php }else{ ?>
           <textarea id="csv_data" style="display:none"><?php
-            $csv = "Kode Voucher;Kategori Lomba;Batch;Status;Berlaku Sampai;Dibuat\n";
+            $csv = "Kode Voucher;Nama Nasabah;Nomor Rekening;Bank Jatim Cabang;Kategori Lomba;Batch;Status;Berlaku Sampai;Dibuat\n";
             foreach ($vouchers as $v) {
               $st  = ($v->voucher_used == 'T')? 'Terpakai' : 'Belum Terpakai';
               $exp = (($v->voucher_expired != null) && ($v->voucher_expired != ''))? date('Y-m-d H:i', strtotime($v->voucher_expired)) : '-';
-              $csv .= $v->voucher_code.';'.$kategori_name.';'.$batchcode.';'.$st.';'.$exp.';'.date('Y-m-d H:i', strtotime($v->voucher_created))."\n";
+              $nsb = isset($v->voucher_nasabah)? $v->voucher_nasabah : '';
+              $rek = isset($v->voucher_norekening)? $v->voucher_norekening : '';
+              $cab = isset($v->voucher_cabang)? $v->voucher_cabang : '';
+              $csv .= $v->voucher_code.';'.$nsb.';'.$rek.';'.$cab.';'.$kategori_name.';'.$batchcode.';'.$st.';'.$exp.';'.date('Y-m-d H:i', strtotime($v->voucher_created))."\n";
             }
             echo html_escape($csv);
           ?></textarea>

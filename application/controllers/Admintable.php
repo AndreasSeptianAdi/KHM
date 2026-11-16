@@ -84,6 +84,13 @@ class Admintable extends CI_Controller {
       $row[] = '<span class="fw-semibold" style="letter-spacing:1px">'.$view->voucher_code.'</span>';
       $row[] = $view->kategori_name;
 
+      // data nasabah Bank Jatim pemilik voucher
+      $nasabah = (isset($view->voucher_nasabah) && ($view->voucher_nasabah != ''))? $view->voucher_nasabah : '-';
+      $detail  = array();
+      if (isset($view->voucher_norekening) && ($view->voucher_norekening != '')){ $detail[] = 'No. Rek: '.$view->voucher_norekening; }
+      if (isset($view->voucher_cabang) && ($view->voucher_cabang != '')){ $detail[] = 'Bank Jatim Cabang '.$view->voucher_cabang; }
+      $row[] = html_escape($nasabah).'<br><small>'.html_escape(implode(' | ', $detail)).'</small>';
+
       $batch = ($view->voucher_batch != '')? $view->voucher_batch : '-';
       $row[] = $batch.'<br><small>'.$view->voucher_batchcode.'</small>';
 

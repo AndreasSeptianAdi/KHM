@@ -6,7 +6,7 @@
 	      	<div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
             <div class="mb-3 mb-sm-0">
               <h5 class="card-title fw-semibold">Voucher Pendaftaran</h5>
-              <small>Kuota kategori otomatis berkurang sejumlah QTY saat voucher dibuat.</small>
+              <small>Sekali buat = 1 voucher untuk 1 nasabah Bank Jatim. Kuota kategori otomatis berkurang 1 dan voucher berlaku sampai 30 November 2026.</small>
             </div>
           </div>
 
@@ -45,14 +45,15 @@
 	            <thead>
 	              <tr>
 	                <th width="2%">NO</th>
-	                <th width="16%">KODE VOUCHER</th>
-	                <th width="12%">KATEGORI LOMBA</th>
-	                <th width="12%">BATCH</th>
-	                <th width="8%">STATUS</th>
-	                <th width="18%">DIGUNAKAN OLEH</th>
-	                <th width="10%">BERLAKU SAMPAI</th>
-	                <th width="10%">DIBUAT</th>
-	                <th width="12%">OPTION</th>
+	                <th width="14%">KODE VOUCHER</th>
+	                <th width="10%">KATEGORI LOMBA</th>
+	                <th width="14%">NASABAH / BANK JATIM</th>
+	                <th width="10%">BATCH</th>
+	                <th width="7%">STATUS</th>
+	                <th width="16%">DIGUNAKAN OLEH</th>
+	                <th width="9%">BERLAKU SAMPAI</th>
+	                <th width="9%">DIBUAT</th>
+	                <th width="9%">OPTION</th>
 	              </tr>
 	            </thead>
 	          </table>
@@ -75,7 +76,7 @@
 	        "order": [[0, 'desc']],
 	        "columnDefs": [
 	          {
-	            "targets": [ 8 ],
+	            "targets": [ 9 ],
 	            "orderable": false,
 	            "searchable": false,
 	          } ],

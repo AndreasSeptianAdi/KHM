@@ -9,7 +9,13 @@ class Adminmodel extends CI_Model {
 	// (I, O, 0, 1) sengaja dibuang supaya kode tidak ambigu saat dibaca peserta.
 	private $voucher_charset = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 	private $voucher_length  = 16;   // jumlah digit kode
-	private $voucher_max_qty = 500;  // batas maksimal QTY sekali generate
+
+	// Input QTY sudah dihapus dari form admin: sekali submit = 1 voucher.
+	private $voucher_per_submit = 1;
+
+	// Masa berlaku voucher dipatok sampai akhir November 2026.
+	// Jam 23:59:59 supaya voucher tetap bisa dipakai sepanjang hari terakhir.
+	private $voucher_expired_default = '2026-11-30 23:59:59';
 
 	public function __construct()
 	{
@@ -412,9 +418,13 @@ class Adminmodel extends CI_Model {
 	}
 
 	/**
-	 * Admin generate voucher (bisa banyak sekaligus lewat QTY).
-	 * Kuota kategori OTOMATIS berkurang sejumlah QTY dalam 1 transaksi,
-	 * jadi kalau kuota tidak cukup semuanya di-rollback (kuota tidak tersentuh).
+	 * Admin generate voucher untuk nasabah Bank Jatim.
+	 * Satu kali submit form = SATU voucher (input QTY sudah dihapus).
+	 * Kuota kategori OTOMATIS berkurang 1 dalam 1 transaksi, jadi kalau kuota
+	 * tidak cukup semuanya di-rollback (kuota tidak tersentuh).
+	 *
+	 * Input form: nama nasabah, nomor rekening, kategori lomba, Bank Jatim
+	 * cabang. Masa berlaku dipatok sampai akhir November 2026.
 	 */
 	public function save_voucher($value='')
 	{
@@ -428,10 +438,10 @@ class Adminmodel extends CI_Model {
 			return $return;
 		}
 
+		$this->form_validation->set_rules('nasabah', 'Nama Nasabah', 'trim|required|max_length[100]');
+		$this->form_validation->set_rules('norekening', 'Nomor Rekening', 'trim|required|max_length[50]|regex_match[/^[0-9]+$/]');
 		$this->form_validation->set_rules('kategori', 'Kategori Lomba', 'trim|required|numeric');
-		$this->form_validation->set_rules('qty', 'Jumlah Voucher (QTY)', 'trim|required|numeric');
-		$this->form_validation->set_rules('batch', 'Nama Batch', 'trim|max_length[100]');
-		$this->form_validation->set_rules('note', 'Catatan', 'trim|max_length[255]');
+		$this->form_validation->set_rules('cabang', 'Bank Jatim Cabang', 'trim|required|max_length[100]');
 		$this->form_validation->set_rules('expired', 'Berlaku Sampai', 'trim');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -440,24 +450,35 @@ class Adminmodel extends CI_Model {
 			return $return;
 		}
 
+		$nasabah     = trim(post('nasabah'));
+		$norekening  = trim(post('norekening'));
+		$cabang      = trim(post('cabang'));
 		$kategori_id = (int)post('kategori');
-		$qty         = (int)post('qty');
+		$qty         = $this->voucher_per_submit;
 
-		if (($qty < 1) || ($qty > $this->voucher_max_qty)){
+		if ($nasabah == ''){
 			$return['status']  = FALSE;
-			$return['message'] = 'QTY harus antara 1 sampai '.$this->voucher_max_qty;
+			$return['message'] = 'Nama nasabah wajib diisi';
+			return $return;
+		}
+		if (!preg_match('/^[0-9]+$/', $norekening)){
+			$return['status']  = FALSE;
+			$return['message'] = 'Nomor rekening hanya boleh berisi angka';
+			return $return;
+		}
+		if ($cabang == ''){
+			$return['status']  = FALSE;
+			$return['message'] = 'Bank Jatim cabang wajib diisi';
 			return $return;
 		}
 
-		$expired = NULL;
+		// masa berlaku voucher: dipatok akhir November 2026
+		$expired = $this->voucher_expired_default;
 		if (trim(post('expired')) != ''){
 			$ts = strtotime(post('expired'));
-			if ($ts === FALSE){
-				$return['status']  = FALSE;
-				$return['message'] = 'Format tanggal "Berlaku Sampai" tidak valid';
-				return $return;
+			if ($ts !== FALSE){
+				$expired = date('Y-m-d 23:59:59', $ts);
 			}
-			$expired = date('Y-m-d H:i:s', $ts);
 		}
 
 		// kunci baris kategori supaya kuota tidak berebut dengan request lain
@@ -479,7 +500,7 @@ class Adminmodel extends CI_Model {
 		if ((int)$kat->kategori_kuota < $qty){
 			$this->db->trans_complete();
 			$return['status']  = FALSE;
-			$return['message'] = 'Sisa kuota <b>'.$kat->kategori_name.'</b> hanya <b>'.(int)$kat->kategori_kuota.'</b>, tidak cukup untuk membuat '.$qty.' voucher';
+			$return['message'] = 'Sisa kuota <b>'.$kat->kategori_name.'</b> sudah habis (<b>'.(int)$kat->kategori_kuota.'</b>), voucher tidak bisa dibuat';
 			return $return;
 		}
 
@@ -491,28 +512,34 @@ class Adminmodel extends CI_Model {
 			return $return;
 		}
 
+		// Label batch & catatan disusun otomatis dari data nasabah Bank Jatim
+		// (input "Nama Batch" dan "Catatan" sudah tidak ada di form admin).
 		$batchcode = $this->make_batch_code();
-		$batch     = (trim(post('batch')) != '')? trim(post('batch')) : $kat->kategori_name;
+		$batch     = substr('Bank Jatim '.$cabang, 0, 100);
+		$note      = substr('Nasabah: '.$nasabah.' | No. Rekening: '.$norekening.' | Bank Jatim Cabang: '.$cabang, 0, 255);
 		$now       = date('Y-m-d H:i:s');
 		$rows      = array();
 
 		foreach ($codes as $code) {
 			$rows[] = array(
-				'voucher_code'      => $code,
-				'voucher_kategori'  => $kategori_id,
-				'voucher_batchcode' => $batchcode,
-				'voucher_batch'     => $batch,
-				'voucher_note'      => post('note'),
-				'voucher_expired'   => $expired,
-				'voucher_status'    => '1',
-				'voucher_used'      => 'F',
-				'voucher_created'   => $now,
+				'voucher_code'       => $code,
+				'voucher_kategori'   => $kategori_id,
+				'voucher_nasabah'    => $nasabah,
+				'voucher_norekening' => $norekening,
+				'voucher_cabang'     => $cabang,
+				'voucher_batchcode'  => $batchcode,
+				'voucher_batch'      => $batch,
+				'voucher_note'       => $note,
+				'voucher_expired'    => $expired,
+				'voucher_status'     => '1',
+				'voucher_used'       => 'F',
+				'voucher_created'    => $now,
 			);
 		}
 
 		$this->db->insert_batch('master_voucher', $rows);
 
-		// kuota otomatis berkurang sejumlah QTY (guard >= qty biar tidak pernah minus)
+		// kuota otomatis berkurang 1 voucher (guard >= qty biar tidak pernah minus)
 		$this->db->query('UPDATE master_kategori SET kategori_kuota = kategori_kuota - ? WHERE kategori_id = ? AND kategori_kuota >= ?', array($qty, $kategori_id, $qty));
 
 		$this->db->trans_complete();
@@ -525,10 +552,11 @@ class Adminmodel extends CI_Model {
 
 		$return['status']    = TRUE;
 		$return['type']      = 'success';
-		$return['message']   = $qty.' voucher berhasil dibuat untuk kategori <b>'.$kat->kategori_name.'</b>.<br>Sisa kuota sekarang <b>'.((int)$kat->kategori_kuota - $qty).'</b>.<br>Kode Batch: <b>'.$batchcode.'</b>';
+		$return['message']   = 'Voucher berhasil dibuat untuk nasabah <b>'.html_escape($nasabah).'</b> (No. Rekening <b>'.html_escape($norekening).'</b>).<br>Kategori: <b>'.html_escape($kat->kategori_name).'</b><br>Bank Jatim Cabang: <b>'.html_escape($cabang).'</b><br>Berlaku sampai: <b>'.date('d F Y H:i', strtotime($expired)).'</b><br>Sisa kuota kategori sekarang <b>'.((int)$kat->kategori_kuota - $qty).'</b>.<br>Kode: <b>'.$codes[0].'</b><br>Kode Batch: <b>'.$batchcode.'</b>';
 		$return['batchcode'] = $batchcode;
+		$return['kode']      = $codes[0];
 
-		makeNotif('Voucher Dibuat', $qty.' voucher dibuat untuk kategori '.$kat->kategori_name.' (batch '.$batchcode.')', '1');
+		makeNotif('Voucher Dibuat', 'Voucher '.$codes[0].' dibuat untuk nasabah '.$nasabah.' (rek. '.$norekening.'), kategori '.$kat->kategori_name.', Bank Jatim Cabang '.$cabang.' (batch '.$batchcode.')', '1');
 
 		return $return;
 	}

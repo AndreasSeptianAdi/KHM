@@ -120,18 +120,21 @@ class Admintablemodel extends CI_Model {
         $ordering = 'kategori_name';
         break;
       case '3':
-        $ordering = 'voucher_batch';
+        $ordering = 'voucher_nasabah';
         break;
       case '4':
-        $ordering = 'voucher_status';
+        $ordering = 'voucher_batch';
         break;
       case '5':
-        $ordering = 'voucher_useddate';
+        $ordering = 'voucher_status';
         break;
       case '6':
-        $ordering = 'voucher_expired';
+        $ordering = 'voucher_useddate';
         break;
       case '7':
+        $ordering = 'voucher_expired';
+        break;
+      case '8':
         $ordering = 'voucher_created';
         break;
       default:
