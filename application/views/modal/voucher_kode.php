@@ -31,38 +31,39 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-md-3"><b>Nama Nasabah</b><br><?=($nasabah != '')? html_escape($nasabah) : '-'?></div>
-          <div class="col-md-3"><b>Nomor Rekening</b><br><?=($norekening != '')? html_escape($norekening) : '-'?></div>
-          <div class="col-md-3"><b>Bank Jatim Cabang</b><br><?=($cabang != '')? html_escape($cabang) : '-'?></div>
-          <div class="col-md-3"><b>Kategori Lomba</b><br><?=html_escape($kategori_name)?></div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-3"><b>Kode Batch</b><br><?=$batchcode?></div>
-          <div class="col-md-3"><b>Label</b><br><?=($batch_label != '')? html_escape($batch_label) : '-'?></div>
-          <div class="col-md-3"><b>Berlaku Sampai</b><br><?=$expired_label?></div>
-          <div class="col-md-3"><b>Total / Terpakai</b><br><?=$total?> / <?=$terpakai?></div>
-        </div>
+        <div id="area_kode">
+          <div class="row mb-3">
+            <div class="col-md-3"><b>Nama Nasabah</b><br><?=($nasabah != '')? html_escape($nasabah) : '-'?></div>
+            <div class="col-md-3"><b>Nomor Rekening</b><br><?=($norekening != '')? html_escape($norekening) : '-'?></div>
+            <div class="col-md-3"><b>Bank Jatim Cabang</b><br><?=($cabang != '')? html_escape($cabang) : '-'?></div>
+            <div class="col-md-3"><b>Kategori Lomba</b><br><?=html_escape($kategori_name)?></div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3"><b>Kode Batch</b><br><?=$batchcode?></div>
+            <div class="col-md-3"><b>Label</b><br><?=($batch_label != '')? html_escape($batch_label) : '-'?></div>
+            <div class="col-md-3"><b>Berlaku Sampai</b><br><?=$expired_label?></div>
+            <div class="col-md-3"><b>Total / Terpakai</b><br><?=$total?> / <?=$terpakai?></div>
+          </div>
 
-        <?php if ($total == 0){ ?>
-          <div class="alert alert-warning">Tidak ada voucher pada batch ini.</div>
-        <?php }else{ ?>
-          <textarea id="csv_data" style="display:none"><?php
-            $csv = "Kode Voucher;Nama Nasabah;Nomor Rekening;Bank Jatim Cabang;Kategori Lomba;Batch;Status;Berlaku Sampai;Dibuat\n";
-            foreach ($vouchers as $v) {
-              $st  = ($v->voucher_used == 'T')? 'Terpakai' : 'Belum Terpakai';
-              $exp = (($v->voucher_expired != null) && ($v->voucher_expired != ''))? date('Y-m-d H:i', strtotime($v->voucher_expired)) : '-';
-              $nsb = isset($v->voucher_nasabah)? $v->voucher_nasabah : '';
-              $rek = isset($v->voucher_norekening)? $v->voucher_norekening : '';
-              $cab = isset($v->voucher_cabang)? $v->voucher_cabang : '';
-              $csv .= $v->voucher_code.';'.$nsb.';'.$rek.';'.$cab.';'.$kategori_name.';'.$batchcode.';'.$st.';'.$exp.';'.date('Y-m-d H:i', strtotime($v->voucher_created))."\n";
-            }
-            echo html_escape($csv);
-          ?></textarea>
+          <?php if ($total == 0){ ?>
+            <div class="alert alert-warning">Tidak ada voucher pada batch ini.</div>
+          <?php }else{ ?>
+            <textarea id="csv_data" style="display:none"><?php
+              $csv = "Kode Voucher;Nama Nasabah;Nomor Rekening;Bank Jatim Cabang;Kategori Lomba;Batch;Status;Berlaku Sampai;Dibuat\n";
+              foreach ($vouchers as $v) {
+                $st  = ($v->voucher_used == 'T')? 'Terpakai' : 'Belum Terpakai';
+                $exp = (($v->voucher_expired != null) && ($v->voucher_expired != ''))? date('Y-m-d H:i', strtotime($v->voucher_expired)) : '-';
+                $nsb = isset($v->voucher_nasabah)? $v->voucher_nasabah : '';
+                $rek = isset($v->voucher_norekening)? $v->voucher_norekening : '';
+                $cab = isset($v->voucher_cabang)? $v->voucher_cabang : '';
+                $csv .= $v->voucher_code.';'.$nsb.';'.$rek.';'.$cab.';'.$kategori_name.';'.$batchcode.';'.$st.';'.$exp.';'.date('Y-m-d H:i', strtotime($v->voucher_created))."\n";
+              }
+              echo html_escape($csv);
+            ?></textarea>
 
-          <div id="area_kode">
+          
             <h6 class="card-title fw-semibold">Daftar Kode Voucher</h6>
-            <textarea id="txt_kode" class="form-control" rows="10" style="font-family:monospace;letter-spacing:1px" readonly><?=implode("\n", $kode_list)?></textarea>
+            <label id="txt_kode" class="form-control" rows="10" style="font-family:monospace;letter-spacing:1px" readonly><?=implode("\n", $kode_list)?></label>
           </div>
 
           <div class="d-md-flex align-items-center mt-3">
