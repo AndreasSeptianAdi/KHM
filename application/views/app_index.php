@@ -92,7 +92,17 @@
                     <span class="hide-menu">Daftar Group</span>
                   </a>
                 </li>
-              <?php }}}else{ ?>
+              <?php }}
+              }else if (userdata()->email == 'opjatim@gmail.com'){  ?>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="<?=base_url()?>page/voucher" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-ticket"></i>
+                  </span>
+                  <span class="hide-menu">Voucher</span>
+                </a>
+              </li>
+              <?php }else{ ?>
               <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Master</span>
