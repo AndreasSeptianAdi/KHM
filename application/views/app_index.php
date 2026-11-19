@@ -206,7 +206,7 @@
                   <span class="hide-menu">Pembayaran</span>
                 </a>
               </li>
-              <?php } ?>
+              <?php }} ?>
               <!-- <li class="sidebar-item">
                   <a class="sidebar-link" href="<?=base_url()?>page/shuttle" aria-expanded="false">
                     <span>
