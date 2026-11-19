@@ -127,6 +127,7 @@ class Usermodel extends CI_Model {
 				'user_email'		=> $data->user_email,
 				'user_join'		=> date('d F Y', strtotime($data->user_created)),
 				'logged_date'	=> date('Y-m-d H:i:s'),
+				'user_type'		=> $data->user_is,
 			);
 
 			$object['user_last_login'] = date('Y-m-d H:i:s');

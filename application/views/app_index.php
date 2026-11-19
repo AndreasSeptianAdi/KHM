@@ -40,7 +40,7 @@
     })();
     </script>
   </head>
-  
+
 
   <body data-bs-theme="light">
     <div class="preloader">
@@ -74,7 +74,7 @@
                 </a>
               </li>
               <?php } ?>
-              <?php if (userid() != 1){ ?>
+              <?php if (userdata()->user_type != 'admin'){ ?>
                 <?php $userdata = userdata(); if ($userdata->pelari_name == ''){ ?>
                 <li class="sidebar-item">
                   <a class="sidebar-link" href="<?=base_url()?>page/daftar" aria-expanded="false">
