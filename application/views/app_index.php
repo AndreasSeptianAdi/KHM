@@ -41,13 +41,6 @@
     </script>
   </head>
 
-  <?php
-    
-    echo "<pre>";
-    print_r (userdata());
-    echo "</pre>";
-    
-  ?>
   <body data-bs-theme="light">
     <div class="preloader">
       <img src="<?=base_url('assets')?>/images/logos/logo_khm.png" alt="loader" class="lds-ripple img-fluid" />
@@ -80,7 +73,7 @@
                 </a>
               </li>
               <?php } ?>
-              <?php if (userdata()->user_type != 'admin'){ ?>
+              <?php if (userdata()->user_is != 'admin'){ ?>
                 <?php $userdata = userdata(); if ($userdata->pelari_name == ''){ ?>
                 <li class="sidebar-item">
                   <a class="sidebar-link" href="<?=base_url()?>page/daftar" aria-expanded="false">
