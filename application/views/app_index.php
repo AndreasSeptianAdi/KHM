@@ -92,8 +92,8 @@
                     <span class="hide-menu">Daftar Group</span>
                   </a>
                 </li>
-              <?php }}
-              }else if (userid() == '0'){  ?>
+              <?php }}}else{ 
+               if (userid() == '0'){ ?>
               <li class="sidebar-item">
                 <a class="sidebar-link" href="<?=base_url()?>page/voucher" aria-expanded="false">
                   <span>
@@ -102,7 +102,9 @@
                   <span class="hide-menu">Voucher</span>
                 </a>
               </li>
-              <?php }else{ ?>
+              <?php
+              }else{
+              ?>
               <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Master</span>
