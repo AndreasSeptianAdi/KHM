@@ -248,7 +248,7 @@ class Adminmodel extends CI_Model {
 		$return['type'] = 'error';
 		$return['message'] = 'Gagal Menyimpan';
 
-		if (userid() != 1){
+		if ($this->session->userdata('user_type') != 'admin'){
 			$return['status']  = FALSE;
 			$return['message'] = 'Akses Ditolak';
 			return $return;
@@ -432,7 +432,7 @@ class Adminmodel extends CI_Model {
 		$return['type']    = 'error';
 		$return['message'] = 'Gagal Membuat Voucher';
 
-		if (userid() != 1){
+		if ($this->session->userdata('user_type') != 'admin'){
 			$return['status']  = FALSE;
 			$return['message'] = 'Akses Ditolak';
 			return $return;
@@ -571,7 +571,7 @@ class Adminmodel extends CI_Model {
 		$return['type']    = 'error';
 		$return['message'] = 'Gagal Menghapus Voucher';
 
-		if (userid() != 1){
+		if ($this->session->userdata('user_type') != 'admin'){
 			$return['status']  = FALSE;
 			$return['message'] = 'Akses Ditolak';
 			return $return;
@@ -624,7 +624,7 @@ class Adminmodel extends CI_Model {
 		$return['type']    = 'error';
 		$return['message'] = 'Gagal Menghapus Batch Voucher';
 
-		if (userid() != 1){
+		if ($this->session->userdata('user_type') != 'admin'){
 			$return['status']  = FALSE;
 			$return['message'] = 'Akses Ditolak';
 			return $return;
