@@ -62,7 +62,7 @@ class Admintable extends CI_Controller {
   function voucher(){
 
     // kode voucher bersifat RAHASIA, endpoint ini hanya untuk admin
-    if (($this->session->userdata('logged_in') != true) || ($this->session->userdata('user_id') != '1')){
+    if (($this->session->userdata('logged_in') != true) || ($this->session->userdata('user_type') != 'admin')){
       $output = array(
         "draw" => get('draw'),
         "recordsTotal" => 0,
