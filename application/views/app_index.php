@@ -41,6 +41,10 @@
     </script>
   </head>
 
+  <?php
+    $userdata = userdata();
+  ?>
+
   <body data-bs-theme="light">
     <div class="preloader">
       <img src="<?=base_url('assets')?>/images/logos/logo_khm.png" alt="loader" class="lds-ripple img-fluid" />
@@ -63,7 +67,8 @@
           <!-- Sidebar navigation-->
           <nav class="sidebar-nav scroll-sidebar" data-simplebar>
             <ul id="sidebarnav">
-              <?php if (userdata()->pelari_group == ''){ ?>
+              <?php if ($userdata->user_is != 'admin'){ 
+                if ($userdata->pelari_group == ''){ ?>
               <li class="sidebar-item">
                 <a class="sidebar-link" href="<?=base_url()?>" aria-expanded="false">
                   <span>
@@ -72,7 +77,7 @@
                   <span class="hide-menu">Beranda</span>
                 </a>
               </li>
-              <?php } ?>
+              <?php }} ?>
               <?php if (userdata()->user_is != 'admin'){ ?>
                 <?php $userdata = userdata(); if ($userdata->pelari_name == ''){ ?>
                 <li class="sidebar-item">
