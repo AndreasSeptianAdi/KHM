@@ -88,7 +88,7 @@ class Main extends CI_Controller {
 			$this->empatkosongempat();
 			return;
 		}
-		if ($this->session->userdata('user_id') != '1'){
+		if ($this->session->userdata('user_type') != 'admin'){
 			$this->empatkosongempat();
 			return;
 		}
@@ -168,7 +168,7 @@ class Main extends CI_Controller {
 			$this->empatkosongempat();
 			return;
 		}
-		if ($this->session->userdata('user_id') != '1'){
+		if ($this->session->userdata('user_type') != 'admin'){
 			$this->empatkosongempat();
 			return;
 		}
