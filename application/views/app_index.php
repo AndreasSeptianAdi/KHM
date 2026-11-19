@@ -93,7 +93,7 @@
                   </a>
                 </li>
               <?php }}
-              }else if (userdata()->email == 'opjatim@gmail.com'){  ?>
+              }else if (userid() == '0'){  ?>
               <li class="sidebar-item">
                 <a class="sidebar-link" href="<?=base_url()?>page/voucher" aria-expanded="false">
                   <span>
