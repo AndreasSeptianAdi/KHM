@@ -41,7 +41,13 @@
     </script>
   </head>
 
-
+  <?php
+    
+    echo "<pre>";
+    print_r (userdata());
+    echo "</pre>";
+    
+  ?>
   <body data-bs-theme="light">
     <div class="preloader">
       <img src="<?=base_url('assets')?>/images/logos/logo_khm.png" alt="loader" class="lds-ripple img-fluid" />
