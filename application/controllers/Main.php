@@ -20,7 +20,7 @@ class Main extends CI_Controller {
 	{
 		if ( $this->session->userdata('logged_in') == TRUE ) {
 			if ( file_exists('application/views/page/inc_'.$filename.'.php') ) {	
-				$alowed_page = ['','index','daftar_lari','daftar','checkout','shuttle'];
+				$alowed_page = ['','index','daftar_lari','daftar','checkout','shuttle','voucher'];
 				if ((userid() != 1) && (!in_array($filename, $alowed_page))){
 					$this->empatkosongempat();
 					// harus berhenti di sini, sebelumnya halaman admin tetap
