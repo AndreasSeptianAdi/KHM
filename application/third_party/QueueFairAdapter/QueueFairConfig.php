@@ -9,11 +9,11 @@ class QueueFairConfig
     //Your Account Secret is shown on the Your Account page of
     //the Queue-Fair Portal.  If you change it there, you must 
     //change it here too.
-    public $accountSecret="kjx1u8tl1cbwf3nd";
+    public $accountSecret="kjx1u8tl1cbwf3ne";
     
     //The System Name of your account from the Your Account page
     //of the Queue-Fair Portal.
-    public $account ="khm2027";
+    public $account ="registrations";
     
     //Leave this set as is
     public $filesServer="files.queue-fair.net";

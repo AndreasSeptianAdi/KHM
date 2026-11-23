@@ -1,3 +1,4 @@
+<script data-queue-fair-client="kedirihalfmarathon" src="https://files.queue-fair.net/queue-fair-adapter.js"></script>
 <?php 
   $isEdit = false;
   $this->db->join('master_pelari', 'pelari_user = user_id', 'left');
