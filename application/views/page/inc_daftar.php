@@ -1,3 +1,4 @@
+<script data-queue-fair-client="kedirihalfmarathon" src="https://files.queue-fair.net/queue-fair-adapter.js"></script>
 <style>
 	:root{--accent:#b54a5a;--muted:#f3f4f6;--bg:#fdf6f7;--glass:rgba(255,255,255,0.06)}
 	.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
